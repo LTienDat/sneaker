@@ -12,6 +12,11 @@ class MenuService {
         return Menu::where('parent_id',0)->get();
     
     }
+
+    public function show(){
+        return Menu::select('name', 'id')
+        ->where('parent_id',0)->orderByDesc('id')->get();
+    }
     public function getAll(){
         return Menu::orderByDesc('id')->paginate(10);
     }
