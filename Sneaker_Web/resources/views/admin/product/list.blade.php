@@ -38,8 +38,8 @@
     </table>
 
     <div class="card-footer clearfix">
-        {!! $products->links() !!}
-    </div>
+            {{ $products->links('pagination::bootstrap-4') }}
+	</div>
 
     
 @endsection

@@ -1,41 +1,25 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Services\Menu\MenuService;
-use Illuminate\Http\Request;
-use App\Http\Services\Product\ProductUserService;
 
-class UserMainController extends Controller
+use App\Http\Services\CartService;
+use Illuminate\Http\Request;
+
+class CartController extends Controller
 {
 
-    protected $menuService;
-    protected $product;
-    public function __construct(MenuService $menuService, ProductUserService $product){
-        $this->menuService = $menuService;
-        $this->product = $product;
+    protected $cartService;
+    public function __construct(CartService $cartService){
+        $this->cartService = $cartService;    
     }
-    public function index()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
     {
-        return view("home",[
-            'title'=> 'Sneaker Store',
-            'menus' => $this->menuService->show(),
-            'products'=> $this->product->get(),
-        ]);
-    }
-    
-    public function loadProduct(Request $request){
-        $page = $request->input('page',0);
-        $result = $this->product->get($page);
-        if(count($result) != 0 ){
-            $html = view('products.list', ['products' => $result])->render();
-
-            return response()->json([
-                'html' => $html
-            ]);
-        }
-        return response()->json([
-            'html' => ''
-        ]);
+        $result = $this->cartService->create($request);
     }
 
     /**

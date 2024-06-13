@@ -53,7 +53,7 @@
             <input type="file" id="upload" class="form-control">
             <div id="image_show">
             </div>
-            <input type="hidden" name="file"  id="file">
+            <input type="hidden" name="file"  id="file" value="">
         </div>
 
         <div class="form-group">

@@ -2,3 +2,13 @@
     font-size: 26px;
     font-weight: bold;
 }
+.block2-pic hov-img0{
+    width: 319px;
+    height: 390px;
+}
+.flex-c-m{
+    cursor: pointer;
+}
+.flex-c-m span{
+    text-transform: none;
+}

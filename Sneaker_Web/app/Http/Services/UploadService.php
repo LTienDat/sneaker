@@ -1,27 +1,38 @@
-<?php 
+<?php
+
 namespace App\Http\Services;
 
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Str;
-use App\Models\Menu;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
-class UploadService {
-   
+class UploadService 
+{
+    public function store($request)
+    {
+        if ($request->hasFile('file')) {
+            try {
+                $file = $request->file('file');
+                $name = $file->getClientOriginalName();
+                $pathFull = 'uploads/' . date('Y/m/d');
 
-    public function store($request){
-        if($request->hasFile("file")){
-            try{
+                // Tạo đối tượng Image từ file đã tải lên
+                $image = Image::make($file);
 
-                $name = $request->file("file")->getClientOriginalName();
-            
-                $pathFull = 'uploads/'.date("Y/m/d");
-                $request->file("file")->storeAs('public/'.$pathFull, $name);
+                // Thay đổi kích thước ảnh (ví dụ: resize về 800x600 và giữ tỷ lệ)
+                $image->resize(319, 390, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
 
-                return '/storage/'. $pathFull. '/' . $name;
-            }catch(\Exception $e){
+                // Lưu ảnh đã thay đổi kích thước vào storage
+                Storage::put('public/' . $pathFull . '/' . $name, (string) $image->encode());
+
+                return '/storage/' . $pathFull . '/' . $name;
+
+            } catch (\Exception $e) {
                 return false;
             }
         }
 
+        return false;
     }
 }

@@ -53,9 +53,10 @@ $('#upload').change(function(){
         success: function(result){
             if(result.error === false){
                 $('#image_show').html('<a href="'+ result.url +'" target="_blank">'+
-                    '<img src="'+ result.url +'"></img width="100px"></a>')
+                    '<img src="'+ result.url +'" width="100px"></img ></a>')
 
                 $('#file').val(result.url);
+                console.log(result.url);
             }else{
                 alert('Upload file lỗi');
             }

@@ -45,7 +45,7 @@ class Helper{
             if($menu->parent_id == $parent_id){
                 $html .='
                     <li>
-                        <a href="danh-muc/'.$menu->id.'-'.Str::slug($menu->name,'-').'">
+                        <a href="/danh-muc/'.$menu->id.'-'.Str::slug($menu->name,'-').'.html">
                             '.$menu->name.'
                         </a>';
                 unset($menus[$key]);
@@ -72,9 +72,9 @@ class Helper{
 
     }
 
-    public static function price($spice = 0, $spice_sale = 0){
-        if($spice!= 0) return $spice;
-        if($spice_sale!= 0) return $spice_sale;
+    public static function price($price = 0, $price_sale = 0){
+        if($price!= 0) return number_format($price);
+        if($price_sale!= 0) return number_format($price_sale);
         return '<a href="/lien-he.html">Liên hệ</a>';
     }
 }

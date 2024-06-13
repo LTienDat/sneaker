@@ -2,9 +2,12 @@
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UploadController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\DetailProductController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\UserMainController;
+use App\Http\Controllers\UserMenuController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\Authenticate;
 
@@ -57,3 +60,9 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('index', [UserMainController::class, 'index']);
+Route::post('services/load-product',[UserMainController::class,'loadProduct']);
+
+Route::get('danh-muc/{id}-{slug}.html',[UserMenuController::class,'index']);
+Route::get('san-pham/{id}-{slug}.html',[DetailProductController::class,'index']);
+
+Route::post('add-cart',[CartController::class,'index']);
