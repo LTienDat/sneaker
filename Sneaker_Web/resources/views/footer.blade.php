@@ -111,27 +111,27 @@
 			</div>
 
 			<div class="p-t-40">
-				<div class="flex-c-m flex-w p-b-18">
+				<!-- <div class="flex-c-m flex-w p-b-18">
 					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-01.png" alt="ICON-PAY">
+						<img src="/Template/images/icons/icon-pay-01.png" alt="ICON-PAY">
 					</a>
 
 					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-02.png" alt="ICON-PAY">
+						<img src="/Template/images/icons/icon-pay-02.png" alt="ICON-PAY">
 					</a>
 
 					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-03.png" alt="ICON-PAY">
+						<img src="/Template/images/icons/icon-pay-03.png" alt="ICON-PAY">
 					</a>
 
 					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-04.png" alt="ICON-PAY">
+						<img src="/Template/images/icons/icon-pay-04.png" alt="ICON-PAY">
 					</a>
 
 					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-05.png" alt="ICON-PAY">
+						<img src="/Template/images/icons/icon-pay-05.png" alt="ICON-PAY">
 					</a>
-				</div>
+				</div> -->
 
 				<p class="stext-107 cl6 txt-center">
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -151,7 +151,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		</span>
 	</div>
 
-	<!-- Modal1 -->
+
 	<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
 		<div class="overlay-modal1 js-hide-modal1"></div>
 
@@ -161,7 +161,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 					<img src="images/icons/icon-close.png" alt="CLOSE">
 				</button>
 
-				<div class="row">
+				<!-- <div class="row">
 					<div class="col-md-6 col-lg-7 p-b-30">
 						<div class="p-l-25 p-r-30 p-lr-0-lg">
 							<div class="wrap-slick3 flex-sb flex-w">
@@ -169,31 +169,31 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 								<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
 								<div class="slick3 gallery-lb">
-									<div class="item-slick3" data-thumb="images/product-detail-01.jpg">
+									<div class="item-slick3" data-thumb="/Template/images/product-detail-01.jpg">
 										<div class="wrap-pic-w pos-relative">
-											<img src="images/product-detail-01.jpg" alt="IMG-PRODUCT">
+											<img src="/Template/images/product-detail-01.jpg" alt="IMG-PRODUCT">
 
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
+											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="/Template/images/product-detail-01.jpg">
 												<i class="fa fa-expand"></i>
 											</a>
 										</div>
 									</div>
 
-									<div class="item-slick3" data-thumb="images/product-detail-02.jpg">
+									<div class="item-slick3" data-thumb="/Template/images/product-detail-02.jpg">
 										<div class="wrap-pic-w pos-relative">
-											<img src="images/product-detail-02.jpg" alt="IMG-PRODUCT">
+											<img src="/Template/images/product-detail-02.jpg" alt="IMG-PRODUCT">
 
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-02.jpg">
+											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="/Template/images/product-detail-02.jpg">
 												<i class="fa fa-expand"></i>
 											</a>
 										</div>
 									</div>
 
-									<div class="item-slick3" data-thumb="images/product-detail-03.jpg">
+									<div class="item-slick3" data-thumb="/Template/images/product-detail-03.jpg">
 										<div class="wrap-pic-w pos-relative">
-											<img src="images/product-detail-03.jpg" alt="IMG-PRODUCT">
+											<img src="/Template/images/product-detail-03.jpg" alt="IMG-PRODUCT">
 
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-03.jpg">
+											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="/Template/images/product-detail-03.jpg">
 												<i class="fa fa-expand"></i>
 											</a>
 										</div>
@@ -217,7 +217,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 								Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
 							</p>
 							
-							<!--  -->
+							
 							<div class="p-t-33">
 								<div class="flex-w flex-r-m p-b-10">
 									<div class="size-203 flex-c-m respon6">
@@ -278,7 +278,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 								</div>	
 							</div>
 
-							<!--  -->
+						
 							<div class="flex-w flex-m p-l-100 p-t-40 respon7">
 								<div class="flex-m bor9 p-r-10 m-r-11">
 									<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
@@ -300,7 +300,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>
@@ -407,4 +407,51 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!--===============================================================================================-->
 	<script src="/Template/js/main.js"></script>
 	<script src="/Template/js/public.js"></script>
-	<script src="../../Jquery/prettify.js"></script>
+	<!-- <script src="../../Jquery/prettify.js"></script> -->
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Bắt sự kiện khi nhấn nút tăng số lượng
+        $('.btn-num-product-up').click(function () {
+            var input = $(this).closest('.wrap-num-product').find('.num-product');
+            var currentValue = parseInt(input.val());
+            var newValue = currentValue  ;
+            input.val(newValue);
+            updateCart($(this)); // Cập nhật giỏ hàng khi thay đổi số lượng
+        });
+
+        // Bắt sự kiện khi nhấn nút giảm số lượng
+        $('.btn-num-product-down').click(function () {
+            var input = $(this).closest('.wrap-num-product').find('.num-product');
+            var currentValue = parseInt(input.val());
+            // if (currentValue > 1) {
+                var newValue = currentValue;
+                input.val(newValue);
+                updateCart($(this)); // Cập nhật giỏ hàng khi thay đổi số lượng
+            // }
+        });
+
+        // Hàm cập nhật giỏ hàng khi thay đổi số lượng
+        function updateCart(btn) {
+            var row = btn.closest('.table_row'); // Lấy hàng (row) chứa nút đã click
+            var price = parseFloat(row.find('.column-3').text().replace(/[^0-9.-]+/g, '')); // Lấy giá sản phẩm
+            var quantity = parseInt(row.find('.num-product').val()); // Lấy số lượng sản phẩm
+            var subtotal = price * quantity; // Tính tổng tiền
+            row.find('.subtotal').text(subtotal.toFixed(2)); // Hiển thị tổng tiền với 2 chữ số thập phân
+            updateTotal(); // Cập nhật tổng số tiền của giỏ hàng
+        }
+
+        // Hàm cập nhật tổng số tiền của giỏ hàng
+        function updateTotal() {
+            var total = 0;
+            $('.subtotal').each(function () { // Duyệt qua từng subtotal
+                var subtotalValue = parseFloat($(this).text().replace(/[^0-9.-]+/g, '')); // Lấy giá trị số tiền
+                total += subtotalValue; // Tính tổng số tiền
+            });
+            $('.cart-total').text(total.toFixed(2)); // Hiển thị tổng số tiền của giỏ hàng với 2 chữ số thập phân
+        }
+    });
+</script>
+
+

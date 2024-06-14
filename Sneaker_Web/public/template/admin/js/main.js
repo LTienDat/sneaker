@@ -63,3 +63,32 @@ $('#upload').change(function(){
         },
     });
 });
+
+
+    function updateCart(event) {
+        event.preventDefault(); // Ngăn chặn form con gửi dữ liệu mặc định
+
+        // Lấy form con
+        var childForm = document.getElementById('child-form');
+
+        // Tạo một FormData object từ form con
+        var formData = new FormData(childForm);
+
+        // Gửi yêu cầu AJAX đến server
+        fetch('/update-cart', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            // Xử lý kết quả trả về nếu cần
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+

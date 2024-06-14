@@ -62,7 +62,12 @@ Route::middleware(['auth'])->group(function () {
 Route::get('index', [UserMainController::class, 'index']);
 Route::post('services/load-product',[UserMainController::class,'loadProduct']);
 
-Route::get('danh-muc/{id}-{slug}.html',[UserMenuController::class,'index']);
-Route::get('san-pham/{id}-{slug}.html',[DetailProductController::class,'index']);
+Route::get('danh-muc/{id}-{slug}',[UserMenuController::class,'index']);
+Route::get('san-pham/{id}-{slug}',[DetailProductController::class,'index']);
 
-Route::post('add-cart',[CartController::class,'index']);
+Route::post('add',[CartController::class,'index']);
+Route::get('carts',[CartController::class,'show']);
+Route::post('update-cart',[CartController::class,'update']);
+Route::get('carts/delete/{id}',[CartController::class,'destroy']);
+Route::post('carts',[CartController::class,'order']);
+
