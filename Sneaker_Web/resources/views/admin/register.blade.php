@@ -47,14 +47,15 @@
         </div>
         <div class="row">
             <div class="col-6">
-            <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
+            <a href="/admin/login" class="btn btn-primary btn-block">Đăng nhập</a>
           </div>
           <!-- /.col -->
           <div class="col-6">
-            <button type="" class="btn btn-primary btn-block">Đăng ký</button>
+            <button type="submit" class="btn btn-primary btn-block">Đăng ký</button>
           </div>
           <!-- /.col -->
         </div>
+        @csrf
       </form>
     </div>
     <!-- /.form-box -->

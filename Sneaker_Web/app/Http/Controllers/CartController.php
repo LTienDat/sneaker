@@ -22,9 +22,10 @@ class CartController extends Controller
     {
         $result = $this->cartService->create($request);
         if($result === false){
-            return redirect()->back();
+            Session::Flass('error', 'Thêm vào giỏ hàng thất bại');
+            
         }
-        return redirect('/carts');
+        return redirect()->back();
         
     }
 
