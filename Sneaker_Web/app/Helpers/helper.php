@@ -13,6 +13,7 @@ class Helper{
                 <tr>
                     <td>'.$menu->id.'</td>
                     <td>'.$char.$menu->name.'</td>
+                    <td><a href="'.$menu->file.'" target="_blank"><img src="'.$menu->file.'" height="50px"></a></td>
                     <td>'.self::active($menu->active).'</td>
                     <td>'.$menu->updated_at.'</td>
                     <td>

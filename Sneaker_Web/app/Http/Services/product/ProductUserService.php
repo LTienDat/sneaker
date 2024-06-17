@@ -17,8 +17,9 @@ class ProductUserService
     }
 
     public function show($id){
-        return Product::where('id' ,$id)->where('active',1)
+        $product =  Product::where('id' ,$id)->where('active',1)
         ->with('menu')->firstOrFail();
+        return (object)$product;
     }
 
 }

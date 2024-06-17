@@ -29,6 +29,16 @@
             <textarea name="content" id="editor" class="form-control">{{$menu->content}}</textarea>
         </div>
 
+        <div class="form-group">
+            <label for="menu">Ảnh danh mục</label>
+            <input type="file" name="file" id="upload" class="form-control">
+            <div id="image_show">
+                <a href="{{$menu->file}}" target="_blank">
+                    <img src="{{$menu->file}}" width="200px" alt="">
+                </a>
+            </div>  
+            <input type="hidden" value="{{$menu->file}}"  name="file" id="file">
+        </div>
 
         <div class="form-group">
             <label for="">Kích hoạt</label>

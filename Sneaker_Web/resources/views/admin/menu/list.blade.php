@@ -6,6 +6,7 @@
             <tr>
                 <th style="width:50px">ID:</th>
                 <th>Tên</th>
+                <th>Ảnh danh mục</th>
                 <th>Hoạt động</th>
                 <th>Cập nhật</th>
                 <th style="width=5px">Sửa|Xóa</th>
