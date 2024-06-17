@@ -16,4 +16,12 @@ class Cart extends Model
         "price"
 
     ];
+    public function product(){
+    return $this->hasone(Product::class, "id", 'product_id');
+    }
+
+    public function customer(){
+        return $this->belongsTo(Customer::class,'customer_id','id');
+    }
+
 }

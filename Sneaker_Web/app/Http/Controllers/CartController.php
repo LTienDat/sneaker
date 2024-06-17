@@ -65,6 +65,15 @@ class CartController extends Controller
         ]);
     }
 
+    public function pay(){
+        $products = $this->cartService->getProduct();
+        return view('pay', [
+            'title'=> 'Danh sách giỏ hàng',
+            'products' => $products,
+            'carts' => Session::get('carts')
+        ]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -102,7 +111,7 @@ class CartController extends Controller
     }
 
     public function order(Request $request){
-        $this->cartService->addCart($request);
+        $this->cartService->pay($request);
         return redirect()->back();
     }
 }

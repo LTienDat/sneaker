@@ -407,16 +407,16 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!--===============================================================================================-->
 	<script src="/Template/js/main.js"></script>
 	<script src="/Template/js/public.js"></script>
-	<!-- <script src="../../Jquery/prettify.js"></script> -->
+	<script src="../../Jquery/prettify.js"></script>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
+	<script>
     $(document).ready(function () {
         // Bắt sự kiện khi nhấn nút tăng số lượng
         $('.btn-num-product-up').click(function () {
             var input = $(this).closest('.wrap-num-product').find('.num-product');
             var currentValue = parseInt(input.val());
-            var newValue = currentValue  ;
+            var newValue = currentValue; // Tăng số lượng lên 1
             input.val(newValue);
             updateCart($(this)); // Cập nhật giỏ hàng khi thay đổi số lượng
         });
@@ -425,33 +425,45 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         $('.btn-num-product-down').click(function () {
             var input = $(this).closest('.wrap-num-product').find('.num-product');
             var currentValue = parseInt(input.val());
-            // if (currentValue > 1) {
-                var newValue = currentValue;
+                var newValue = currentValue; // Giảm số lượng đi 1 (nhưng không được dưới 1)
                 input.val(newValue);
                 updateCart($(this)); // Cập nhật giỏ hàng khi thay đổi số lượng
-            // }
         });
 
         // Hàm cập nhật giỏ hàng khi thay đổi số lượng
-        function updateCart(btn) {
-            var row = btn.closest('.table_row'); // Lấy hàng (row) chứa nút đã click
-            var price = parseFloat(row.find('.column-3').text().replace(/[^0-9.-]+/g, '')); // Lấy giá sản phẩm
-            var quantity = parseInt(row.find('.num-product').val()); // Lấy số lượng sản phẩm
-            var subtotal = price * quantity; // Tính tổng tiền
-            row.find('.subtotal').text(subtotal.toFixed(2)); // Hiển thị tổng tiền với 2 chữ số thập phân
-            updateTotal(); // Cập nhật tổng số tiền của giỏ hàng
-        }
+		function updateCart(btn) {
+		var row = btn.closest('.table_row'); // Lấy hàng (row) chứa nút đã click
+		var price = parseFloat(row.find('.column-3').text().replace(/[^0-9.-]+/g, '')); // Lấy giá sản phẩm từ cột giá
+		var quantity = parseInt(row.find('.num-product').val()); // Lấy số lượng sản phẩm từ input số lượng
+		var subtotal = price * quantity; // Tính tổng tiền
 
-        // Hàm cập nhật tổng số tiền của giỏ hàng
-        function updateTotal() {
-            var total = 0;
-            $('.subtotal').each(function () { // Duyệt qua từng subtotal
-                var subtotalValue = parseFloat($(this).text().replace(/[^0-9.-]+/g, '')); // Lấy giá trị số tiền
-                total += subtotalValue; // Tính tổng số tiền
-            });
-            $('.cart-total').text(total.toFixed(2)); // Hiển thị tổng số tiền của giỏ hàng với 2 chữ số thập phân
+		// Hiển thị tổng tiền với 0 chữ số thập phân
+		row.find('.subtotal').text(numberWithCommas(parseInt(subtotal)));
+		// Cập nhật lại data-price với giá trị mới
+		row.find('.subtotal').attr('data-price', subtotal.toFixed(0));
+
+		updateTotal(); // Cập nhật tổng số tiền của giỏ hàng
+}
+
+function updateTotal() {
+    var total = 0;
+    $('.subtotal').each(function () {
+        var subtotalValue = parseFloat($(this).attr('data-price'));
+        if (!isNaN(subtotalValue)) {
+            total += subtotalValue;
         }
     });
+
+    // Hiển thị tổng số tiền của giỏ hàng
+    $('.cart-total').text(numberWithCommas(parseInt(total)));
+}
+
+// Hàm định dạng số với dấu phân cách hàng nghìn
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+    });
 </script>
+
 
 

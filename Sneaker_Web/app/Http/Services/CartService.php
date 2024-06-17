@@ -1,6 +1,7 @@
 <?php 
  namespace App\Http\Services;
  use App\Helpers\Helper;
+ use App\Jobs\SendMail;
  use App\Models\Cart;
  use App\Models\Customer;
  use App\Models\Product;
@@ -49,7 +50,7 @@
 
 
     public function update($request){
-        Session::put('carts', $request->input('num_product'));
+        Session::put('carts', $request->input('num_product', ));
         return true;
     }
 
@@ -60,11 +61,11 @@
         return true;
     }
 
-    public function addCart($request){
+    public function pay($request){
         try{
 
             DB::beginTransaction();
-            $carts = Session::get('carts');
+               $carts = Session::get('carts');
             if(is_null($carts)){
                 return false;
             }
@@ -74,7 +75,8 @@
                 "phone" => $request->input("phone"),
                 "address" => $request->input("address"),
                 "note" => $request->input("note"),
-            ]);
+            ]); 
+            
 
             $this->infoProduct($carts, $customer->id);
             DB::commit();
