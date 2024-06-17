@@ -14,7 +14,7 @@ class MenuService {
     }
 
     public function show(){
-        return Menu::select('name', 'id')
+        return Menu::select('name', 'id', 'file')
         ->where('parent_id',0)->orderByDesc('id')->get();
     }
     public function getAll(){
@@ -22,13 +22,16 @@ class MenuService {
     }
     public function create($request) {
     try {
+
             Menu::create([
                 'name' => (string)$request->input('name'),
                 'parent_id' => (int) $request->input('parent_id'),
                 'description' => (string)$request->input('description'),
                 'content' =>(string) $request->input('content'),
                 'active' =>(int) $request->input('active'),
+                'file' =>(string) $request->input('file'),
                 'slug' => Str::slug($request->input('name')),
+                
             ]);
             
 
@@ -50,16 +53,16 @@ class MenuService {
     }
 
     public function update($menu ,$request){
-        if($request->input('parent_id') != $menu->id){
-            $menu ->fill($request->input());
+        try{
+            $menu -> fill($request->input());
             $menu -> save();
-     
-            Session::flash('success','Cập nhật thành công danh mục');
-            return true;
+            Session::flash('success','Cập nhật thành công');
+        }catch(\Exception $e){
+            Session::flash('error','Cập nhật thất bại');
+            \Log::info($e->getMessage());
+            return false;
         }
-        else{
-            Session::flash('error','Cập nhật không thành công do danh mục '.$menu->name.' không thể làm con của nó');
-        }
+        return true;    
     }
 
     public function getId($id){

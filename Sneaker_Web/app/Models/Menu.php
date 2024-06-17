@@ -15,6 +15,7 @@ class Menu extends Model
         'content',
         'slug',
         'active',
+        'file'
 
     ];
     public function products(){
