@@ -6,6 +6,7 @@
 @include('header')
 	<!-- Cart -->
 @include('cart')
+@include('admin.alert')
 	<!-- Slider -->
 
 	@yield('content')

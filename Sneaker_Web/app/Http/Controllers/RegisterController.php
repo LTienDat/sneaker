@@ -21,6 +21,6 @@ class RegisterController extends Controller
 
     public function create(Request $request){
         $this->userService->create($request->input());
-        return redirect('admin.login');
+        return redirect()->back('login');
     }
 }

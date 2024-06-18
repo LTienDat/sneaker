@@ -8,26 +8,16 @@
             <!-- Topbar -->
             <nav class="limiter-menu-desktop container">
 
-<<<<<<< HEAD
-					<!-- Menu desktop -->
-					<div class="menu-desktop">
-						<ul class="main-menu">
-                            <li class="active-menu">
-                                <a href="/index">Trang chủ</a>
-                            </li>
-                            {!!$menusHtml!!}
-=======
                 <!-- Logo desktop -->
                 <a href="#" class="logo">
                     <Span>Sneaker Store</Span>
                 </a>
->>>>>>> 47c79db86c2c90c37ca175cba998ae407ac91fef
 
                 <!-- Menu desktop -->
                 <div class="menu-desktop">
                     <ul class="main-menu">
                         <li class="active-menu">
-                            <a href="/index">Trang chủ</a>
+                            <a href="/">Trang chủ</a>
                         </li>
                         {!!$menusHtml!!}
 
@@ -40,47 +30,10 @@
                         <i class="zmdi zmdi-search"></i>
                     </div>
 
-<<<<<<< HEAD
-						
-					</div>
-				</nav>
-			</div>
-		</div>
-
-		<!-- Header Mobile -->
-		<div class="wrap-header-mobile">
-			<!-- Logo moblie -->		
-			<div class="logo-mobile">
-				<a href="index.html"><img src="" alt="IMG-LOGO"></a>
-			</div>
-
-			<!-- Icon header -->
-			<div class="wrap-icon-header flex-w flex-r-m m-r-15">
-				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
-					<i class="zmdi zmdi-search"></i>
-				</div>
-
-				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
-
-				 data-notify="{{is_array(Session::get('carts')) ? count(Session::get('carts')) : ''}}">
-					<i class="zmdi zmdi-shopping-cart"></i>
-				</div>
-
-			</div>
-
-			<!-- Button show menu -->
-			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
-				<span class="hamburger-box">
-					<span class="hamburger-inner"></span>
-				</span>
-			</div>
-		</div>
-=======
                     <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
                         data-notify="{{!is_null(Session::get('carts')) ? count(Session::get('carts')) : 0}}">
                         <i class="zmdi zmdi-shopping-cart"></i>
                     </div>
->>>>>>> 47c79db86c2c90c37ca175cba998ae407ac91fef
 
 
                 </div>
@@ -102,10 +55,9 @@
             </div>
 
             <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
-                data-notify="">
+                data-notify="{{!is_null(Session::get('carts')) ? count(Session::get('carts')) : 0}}">
                 <i class="zmdi zmdi-shopping-cart"></i>
             </div>
-
         </div>
 
         <!-- Button show menu -->

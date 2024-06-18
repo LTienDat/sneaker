@@ -37,7 +37,7 @@ class Helper{
     }
 
     public static function active($active = 0){
-        return $active == 0 ? '<span class="btn btn-danger btn-xs ">Không</span>' :'<span class="btn btn-success btn-xs ">Có</span>';
+        return $active == 0 ? '<span class="btn btn-danger btn-xs text-center ">Không</span>' :'<span class="btn btn-success btn-xs text-center ">Có</span>';
     }
 
     public static function menus($menus, $parent_id = 0 ){

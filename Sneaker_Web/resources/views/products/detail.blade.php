@@ -86,7 +86,7 @@
 								</div>
 
 								<div class="size-204 respon6-next">
-								<form action="/add" method="post">
+								<form action="/add"  method="post">
 									@if($products !== null)
 										<div class="rs1-select2 bor8 bg0">
 											<select class="js-select2 select2-hidden-accessible" name="time" tabindex="-1" aria-hidden="true">
@@ -134,7 +134,7 @@
 											<i class="fs-16 zmdi zmdi-plus"></i>
 										</div>
 									</div>
-									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+									<button type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
 										Add to cart
 									</button>
 									<input type="hidden" name="product_id" value="{{$products->id}}">

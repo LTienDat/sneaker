@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\OderListController;
 use App\Http\Controllers\Admin\OrderListController;
@@ -28,10 +29,11 @@ use App\Http\Middleware\Authenticate;
 
 
 Route::get('admin/login', [LoginController::class,'index'])->name('login');
+Route::post('/logout', [LoginController::class,'logout'])->name('logout');
 Route::get('admin/register', [RegisterController::class,'index']);
 Route::post('admin/register', [RegisterController::class,'create']);
 
-Route::post('admin/login/store', [LoginController::class,'store']);
+Route::post('admin/login', [LoginController::class,'store']);
 
 Route::middleware(['auth'])->group(function () {
 
@@ -63,10 +65,17 @@ Route::middleware(['auth'])->group(function () {
         #upload
         Route::post('upload/services',[UploadController::class,'store']);
 
+        Route::get('account/list',[AccountController::class,'index'])->name('admin.account.list');
+        Route::get('account/edit/{account}',[AccountController::class,'show']);
+        Route::post('account/edit/{account}',[AccountController::class,'updateAccount']);
+        Route::delete ('account/destroy', [AccountController::class,'destroy']);
+
+
     });
+
 });
 
-Route::get('index', [UserMainController::class, 'index']);
+Route::get('index', [UserMainController::class, 'index'])->name('home');
 Route::post('services/load-product',[UserMainController::class,'loadProduct']);
 
 Route::get('danh-muc/{id}-{slug}',[UserMenuController::class,'index']);
@@ -78,5 +87,6 @@ Route::post('update-cart',[CartController::class,'update']);
 Route::get('carts/delete/{id}',[CartController::class,'destroy']);
 Route::get('pay',[CartController::class,'pay']);
 Route::post('pay',[CartController::class,'order']);
+
 
 

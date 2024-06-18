@@ -20,11 +20,19 @@ class CartController extends Controller
      */
     public function index(Request $request)
     {
-        $result = $this->cartService->create($request);
-        if($result === false){
+        if (!auth()->user()) {
+            echo "<script>
+                var confirmLogin = confirm('Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng, bạn có muốn đăng nhập không?');
+                if (confirmLogin) {
+                    window.location.href = 'admin/login';
+                } else {
+                    window.history.back();
+                }
+            </script>";
+        } else {
+            $this->cartService->create($request);
             return redirect()->back();
         }
-        return redirect('/carts');
         
     }
 

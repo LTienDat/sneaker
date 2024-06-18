@@ -93,4 +93,6 @@ $('#upload').change(function(){
     }
 
 
+    // Sử dụng jQuery để gửi AJAX request khi click vào nút Upload
+
 

@@ -15,7 +15,7 @@ class MenuService {
 
     public function show(){
         return Menu::select('name', 'id', 'file')
-        ->where('parent_id',0)->orderByDesc('id')->get();
+        ->where('parent_id',0)->orderByDesc('id')->get();   
     }
     public function getAll(){
         return Menu::orderByDesc('id')->paginate(10);
