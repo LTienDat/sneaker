@@ -12,7 +12,7 @@
         </div>
         <div class="form-group">
             <label for="menu">Danh mục</label>
-            <select class="form-controll" name="parent_id" id="">
+            <select class="form-control" name="parent_id" id="">
                 <option value="0">Danh mục cha</option>
                 @foreach($menus as $menu)
                 <option value="{{$menu->id}}">{{$menu->name}}</option>

@@ -7,9 +7,6 @@ $.ajaxSetup({
 function removeRow(id, url){
     if (confirm('Bạn có chắc chắn muốn xóa nội dung này không?')) {
         $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
             type: 'DELETE',
             datatype: 'JSON',
             data: {id: id},
@@ -91,8 +88,5 @@ $('#upload').change(function(){
             console.error('Error:', error);
         });
     }
-
-
-    // Sử dụng jQuery để gửi AJAX request khi click vào nút Upload
 
 

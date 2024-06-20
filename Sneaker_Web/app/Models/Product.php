@@ -22,4 +22,12 @@ class Product extends Model
     public function menu(){
         return $this->hasOne(Menu::class, 'id','menu_id')->withDefault(['name'=>'']);
     }
+
+    public function cart(){
+        return $this->belongsTo(Cart::class,'product_id','id');
+    }
+
+    public function productAttribute(){
+        return $this->hasMany(ProductAttribute::class,'product_id','id');
+    }
 }

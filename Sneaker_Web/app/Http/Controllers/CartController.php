@@ -30,8 +30,8 @@ class CartController extends Controller
                 }
             </script>";
         } else {
-            $this->cartService->create($request);
-            return redirect()->back();
+        $this->cartService->create($request);
+        return redirect()->back();
         }
         
     }
@@ -57,18 +57,21 @@ class CartController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show()
     {
         $products = $this->cartService->getProduct();
         return view('carts.list', [
             'title'=> 'Danh sách giỏ hàng',
             'products' => $products,
+            'carts' => Session::get('carts')
+        ]);
+    }
+    public function showCart(){
+        $products = $this->cartService->getProduct();
+        return view('cart', [
+            'title'=> 'Danh sách giỏ hàng',
+            'productCart' => $products,
             'carts' => Session::get('carts')
         ]);
     }
@@ -119,7 +122,8 @@ class CartController extends Controller
     }
 
     public function order(Request $request){
-        $this->cartService->pay($request);
+         $this->cartService->pay($request);
+
         return redirect()->back();
     }
 }

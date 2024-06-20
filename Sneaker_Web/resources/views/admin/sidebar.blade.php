@@ -81,6 +81,12 @@
                                 <p>Xem Sản phẩm</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="/admin/product/attribute" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Size và Màu</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
@@ -112,7 +118,7 @@
                     <a href="#" class="nav-link">
                         <i class="fas fa-bars mr-2"></i>
                         <p>
-                            Quản lí tài khoản
+                            Tài khoản
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -121,6 +127,30 @@
                             <a href="/admin/account/list" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh Sách tài khoản</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-bars mr-2"></i>
+                        <p>
+                            Kho hàng
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/admin/account/list" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh Sách kho hàng</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/account/list" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Nhập hàng</p>
                             </a>
                         </li>
                     </ul>

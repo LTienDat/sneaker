@@ -5,6 +5,7 @@
 @section('content')
 
 <form action="" method="post">
+@csrf
     <div class="card-body">
         <div class="row">
             <div class="col-md-6">
@@ -72,7 +73,7 @@
     <div class="card-footer">
         <button type="submit" class="btn btn-primary">Tạo danh mục</button>
     </div>
-    @csrf
+    
 </form>
 @endsection
 

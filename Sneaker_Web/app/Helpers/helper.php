@@ -78,4 +78,5 @@ class Helper{
         if($price_sale!= 0) return $price_sale;
         return '<a href="/lien-he.html">Liên hệ</a>';
     }
+
 }

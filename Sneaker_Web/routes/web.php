@@ -3,6 +3,7 @@ use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\OderListController;
 use App\Http\Controllers\Admin\OrderListController;
+use App\Http\Controllers\Admin\ProductAttributeController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UploadController;
 use App\Http\Controllers\CartController;
@@ -60,6 +61,9 @@ Route::middleware(['auth'])->group(function () {
             Route::get ('edit/{product}', [ProductController::class,'show']);
             Route::post ('edit/{product}', [ProductController::class,'update']);
             Route::delete ('destroy', [ProductController::class,'destroy']);
+            Route::get ('attribute', [ProductAttributeController::class,'show']);
+            Route::get ('addAttribute', [ProductAttributeController::class,'create']);
+            Route::post ('addAttribute', [ProductAttributeController::class,'store']);
         });
 
         #upload
@@ -83,10 +87,12 @@ Route::get('san-pham/{id}-{slug}',[DetailProductController::class,'index']);
 
 Route::post('add',[CartController::class,'index']);
 Route::get('carts',[CartController::class,'show']);
+// Route::get('/cart',[CartController::class,'showCart']);
 Route::post('update-cart',[CartController::class,'update']);
 Route::get('carts/delete/{id}',[CartController::class,'destroy']);
 Route::get('pay',[CartController::class,'pay']);
 Route::post('pay',[CartController::class,'order']);
+
 
 
 

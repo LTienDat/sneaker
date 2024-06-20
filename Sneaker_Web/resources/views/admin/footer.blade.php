@@ -10,3 +10,12 @@
 
 
 @yield('footer')
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script>
+        $(document).ready(function() {
+            $('#productName').change(function() {
+                var productId = $(this).val();
+                $('#productId').val(productId);
+            });
+        });
+    </script>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddFileToProductsTable extends Migration
+class CreateWereHousesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,13 @@ class AddFileToProductsTable extends Migration
      */
     public function up()
     {
-        Schema::table('products', function (Blueprint $table) {
-          
+        Schema::create('ware_houses', function (Blueprint $table) {
+            $table->id();
+            $table->string('quantity');
+            $table->string('size');
+            $table->string('import_price');
+
+            $table->timestamps();
         });
     }
 
@@ -25,8 +30,6 @@ class AddFileToProductsTable extends Migration
      */
     public function down()
     {
-        Schema::table('products', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('were_houses');
     }
 }

@@ -404,7 +404,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
-    $(document).ready(function () {
+$(document).ready(function () {
         // Bắt sự kiện khi nhấn nút tăng số lượng
         $('.btn-num-product-up').click(function () {
             var input = $(this).closest('.wrap-num-product').find('.num-product');
@@ -450,6 +450,7 @@ function updateTotal() {
     // Hiển thị tổng số tiền của giỏ hàng
     $('.cart-total').text(numberWithCommas(parseInt(total)));
 }
+
 
 // Hàm định dạng số với dấu phân cách hàng nghìn
 function numberWithCommas(x) {

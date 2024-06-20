@@ -58,7 +58,7 @@
 
 								
 
-								
+							
 							</div>
 						</div>
 					</div>
@@ -86,16 +86,15 @@
 								</div>
 
 								<div class="size-204 respon6-next">
-								<form action="/add"  method="post">
+								<form action="/add" method="post">
 									@if($products !== null)
 										<div class="rs1-select2 bor8 bg0">
-											<select class="js-select2 select2-hidden-accessible" name="time" tabindex="-1" aria-hidden="true">
-												<option>Choose an option</option>
-												<option>Size S</option>
-												<option>Size M</option>
-												<option>Size L</option>
-												<option>Size XL</option>
-											</select><span class="select2 select2-container select2-container--default select2-container--below" dir="ltr" style="width: 140px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-time-c4-container"><span class="select2-selection__rendered" id="select2-time-c4-container" title="Choose an option">Choose an option</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+											<select class="js-select2 select2-hidden-accessible" type="number" name="size" tabindex="-1" aria-hidden="true">
+												<option>Chọn Size</option>
+                                                @foreach ($productAttributes as $productAttribute)                                                
+												    <option value="{{$productAttribute->size}}">{{$productAttribute->size}}</option>
+                                                @endforeach
+											</select>
 											<div class="dropDownSelect2"></div>
 										</div>
 									</div>
@@ -103,18 +102,17 @@
 
 								<div class="flex-w flex-r-m p-b-10">
 									<div class="size-203 flex-c-m respon6">
-										Color
+										Màu
 									</div>
 
 									<div class="size-204 respon6-next">
 										<div class="rs1-select2 bor8 bg0">
-											<select class="js-select2 select2-hidden-accessible" name="time" tabindex="-1" aria-hidden="true">
-												<option>Choose an option</option>
-												<option>Red</option>
-												<option>Blue</option>
-												<option>White</option>
-												<option>Grey</option>
-											</select><span class="select2 select2-container select2-container--default select2-container--below" dir="ltr" style="width: 140px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-time-5p-container"><span class="select2-selection__rendered" id="select2-time-5p-container" title="Choose an option">Choose an option</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+											<select class="js-select2 select2-hidden-accessible" name="color" tabindex="-1" aria-hidden="true">
+												<option>Chọn màu</option>
+												@foreach ($productAttributes as $productAttribute)                                                
+												    <option value="{{$productAttribute->color}}">{{$productAttribute->color}}</option>
+                                                @endforeach
+											</select>
 											<div class="dropDownSelect2"></div>
 										</div>
 									</div>
@@ -134,7 +132,7 @@
 											<i class="fs-16 zmdi zmdi-plus"></i>
 										</div>
 									</div>
-									<button type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
 										Add to cart
 									</button>
 									<input type="hidden" name="product_id" value="{{$products->id}}">

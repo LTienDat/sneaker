@@ -20,8 +20,8 @@ class CartComposer{
             return [];
         }
         $productId = array_keys($carts);
-        $product = Product::select('id', 'name', 'price', 'price_sale', 'file')
+        $products = Product::select('id', 'name', 'price', 'price_sale', 'file')
             ->where('active', 1)->whereIn('id', $productId)->get();
-        $view->with('products', $product);
+        $view->with('productCart', $products);
     }
 }
