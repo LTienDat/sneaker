@@ -47,7 +47,11 @@
         </div>
         <div class="row">
             <div class="col-6">
+<<<<<<< HEAD
             <button class="btn btn-primary btn-block"><a href="/admin/login">Đăng nhập</a></button>
+=======
+            <a href="/admin/login" class="btn btn-primary btn-block">Đăng nhập</a>
+>>>>>>> 899e94295808cd1684998bbb2c1f0b0e841b7f75
           </div>
           <!-- /.col -->
           <div class="col-6">
@@ -56,6 +60,7 @@
           @csrf
           <!-- /.col -->
         </div>
+        @csrf
       </form>
     </div>
     <!-- /.form-box -->
