@@ -5,14 +5,18 @@ use App\Http\Controllers\Admin\OderListController;
 use App\Http\Controllers\Admin\OrderListController;
 use App\Http\Controllers\Admin\ProductAttributeController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\UploadController;
+use App\Http\Controllers\Admin\WareHouseController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\DetailProductController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Admin\MainController;
+use App\Http\Controllers\paymentsController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserMainController;
 use App\Http\Controllers\UserMenuController;
+use App\Models\ProductAttribute;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\Authenticate;
 
@@ -61,9 +65,18 @@ Route::middleware(['auth'])->group(function () {
             Route::get ('edit/{product}', [ProductController::class,'show']);
             Route::post ('edit/{product}', [ProductController::class,'update']);
             Route::delete ('destroy', [ProductController::class,'destroy']);
-            Route::get ('attribute', [ProductAttributeController::class,'show']);
-            Route::get ('addAttribute', [ProductAttributeController::class,'create']);
-            Route::post ('addAttribute', [ProductAttributeController::class,'store']);
+            Route::get ('attribute', [WareHouseController::class,'show']);
+            Route::get ('addAttribute', [WareHouseController::class,'create']);
+            Route::post ('addAttribute', [WareHouseController::class,'store']);
+        });
+
+        Route::prefix('supplier')->group(function () {
+            Route::get('list', [SupplierController::class,'index']);
+            Route::get('add', [SupplierController::class,'create']);
+            Route::post('add', [SupplierController::class,'store']);
+            Route::get('edit/{supplier}', [SupplierController::class,'show']);
+            Route::post('edit/{supplier}', [SupplierController::class,'update']);
+            Route::delete('destroy', [SupplierController::class,'destroy']);
         });
 
         #upload
@@ -90,8 +103,8 @@ Route::get('carts',[CartController::class,'show']);
 // Route::get('/cart',[CartController::class,'showCart']);
 Route::post('update-cart',[CartController::class,'update']);
 Route::get('carts/delete/{id}',[CartController::class,'destroy']);
-Route::get('pay',[CartController::class,'pay']);
-Route::post('pay',[CartController::class,'order']);
+Route::get('pay',[paymentsController::class,'pay']);
+Route::post('pay',[paymentsController::class,'order']);
 
 
 

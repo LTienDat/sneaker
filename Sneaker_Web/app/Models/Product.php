@@ -15,6 +15,7 @@ class Product extends Model
         'menu_id',
         'price',
         'price_sale',
+        'warehouse_id',
         'active',
         'file',
     ];
@@ -29,5 +30,9 @@ class Product extends Model
 
     public function productAttribute(){
         return $this->hasMany(ProductAttribute::class,'product_id','id');
+    }
+
+    public function warehouse(){
+        return $this->hasmany(Warehouse::class, 'warehouse_id', 'MaDH');
     }
 }

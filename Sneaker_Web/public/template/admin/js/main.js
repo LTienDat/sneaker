@@ -1,22 +1,22 @@
-$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
+
 
 function removeRow(id, url){
     if (confirm('Bạn có chắc chắn muốn xóa nội dung này không?')) {
         $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             type: 'DELETE',
             datatype: 'JSON',
             data: {id: id},
             url: url,
             success: function(result){
+                console.log(result.error);
                 if (result.error === false) {
                     alert('Xóa thành công');
                     location.reload();
                 } else {
-                    alert('Xóa lỗi, Vui lòng xóa lại');
+                    alert('Xóa lỗi, Vui lòng xóa lại');     
                 }
             },
             error: function(xhr, status, error) {
@@ -31,7 +31,6 @@ function removeRow(id, url){
 }
 
 
-
 // #upload file
 
 $('#upload').change(function(){
@@ -41,6 +40,9 @@ $('#upload').change(function(){
     form.append('file', $(this)[0].files[0])
 
     $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         processData: false,
         contentType: false,
         type: 'POST',

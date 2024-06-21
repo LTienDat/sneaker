@@ -1,0 +1,92 @@
+Table users {
+  id bigint [primary key]
+  username varchar
+  password varchar
+  phone varchar
+  email varchar
+  address varchar
+  status varchar
+  level varchar
+  created_at timestamp
+}
+
+Table product {
+  id bigint [primary key]
+  warehouse_id bigint [ref: > Warehouse.id]
+  cart_id bigint [ref: > carts.id]
+  name varchar
+  file varchar
+  description varchar
+  content varchar
+  price int
+  price_sale int
+  active int
+  created_at timestamp
+}
+ 
+Table Product_image{
+  product_id bigint [ref: > product.id]
+  product_name varchar
+  file varchar
+  created_at datetime
+  updated_at datetime
+}
+
+Table order{
+  id bigint [PK]
+  user_id bigint [ref: > users.id]
+  product_id bigint [ref: > product.id]
+  price int
+  total_quantity int
+  status_payment int
+  status_transport int
+  total_discount int
+  total_price int
+  note varchar
+  created_at datetime
+  updated_at datetime
+}
+Table menus{
+  id bigint [pk]
+  name varchar
+  parend_id int
+  description text
+  content longtext
+  slug varchar
+  active varchar
+  file varchar
+}
+Table supplier{
+  id bigint [pk]
+  warehoue_id bigint [ref: > Warehouse.id]
+  name varchar
+  phone int
+  email varchar
+  address varchar
+}
+Table Warehouse{
+  id bigint [pk]
+  quantity int
+  size int
+  color varchar
+}
+table carts{
+  id bigint [pk]
+  size int
+  color varchar
+  quantity int
+  price int 
+  total price
+}
+
+Table oderProduct{
+  id bigint [pk]
+  product_id bigint [ref: > product.id]
+  order_id bigint [ref: > order.id]
+}
+
+Table orderuser{
+  id bigint [pk]
+  user_id bigint [ref: > users.id]
+  order_id bigint [ref: > order.id]
+}

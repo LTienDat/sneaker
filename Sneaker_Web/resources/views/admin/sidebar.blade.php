@@ -81,12 +81,12 @@
                                 <p>Xem Sản phẩm</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="/admin/product/attribute" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Size và Màu</p>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </li>
 
@@ -142,15 +142,40 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/admin/account/list" class="nav-link">
+                            <a href="/admin/product/attribute/{{isset($warehouses) ? "{1}" : ''}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh Sách kho hàng</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/admin/account/list" class="nav-link">
+                            <a href="/admin/product/addAttribute" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Nhập hàng</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-bars mr-2"></i>
+                        <p>
+                            Nhà cung cấp
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/admin/supplier/add" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Thêm nhà cung cấp</p>s
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/supplier/list" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách nhà cung cấp</p>
                             </a>
                         </li>
                     </ul>

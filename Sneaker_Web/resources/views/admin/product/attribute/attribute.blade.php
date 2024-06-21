@@ -15,18 +15,18 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ( $products as $key => $product )
+            @foreach ( $warehouses as $key => $warehouse )
             <tr>
-                <td>{{$product->id}}</td>
-                <td>{{$product->product->name}}</td>
-                <th><a href="{{$product->product->file}}" target="_blank"><img src="{{$product->product->file}}" height="50px"></a></th>
-                <td>{{$product->size}}</td>
-                <td>{{$product->color}}</td>
-                <td>{{$product->quantity}}</td>
+                <td>{{$warehouse->id}}</td>
+                <td>{{$warehouse->name}}</td>
+                <th><a href="{{$warehouse->file}}" target="_blank"><img src="{{$warehouse->file}}" height="50px"></a></th>
+                <td>{{$warehouse->warehouse->size}}</td>
+                <td>{{$warehouse->warehouse->color}}</td>
+                <td>{{$warehouse->warehouse->quantity}}</td>
                 <td>
-                    <a class="btn btn-primary btn-sm" href="/admin/product/edit/{{$product->id}}"><i class="fas fa-edit"></i></a>
+                    <a class="btn btn-primary btn-sm" href="/admin/product/edit/{{$warehouse->id}}"><i class="fas fa-edit"></i></a>
                     <a class="btn btn-danger btn-sm" href="#"
-                    onclick="removeRow({{$product->id}},'/admin/product/destroy')">
+                    onclick="removeRow({{$warehouse->id}},'/admin/product/destroy')">
                     <i class="fas fa-trash"></i></a>
                 </td>             
             </tr>

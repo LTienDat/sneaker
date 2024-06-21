@@ -33,7 +33,6 @@
                                     <th class="column-6">Total</th>
                                     <th class="column-7"></th>
                                 </tr>
-
                                 @foreach ($products as $product)
                                 <tr class="table_row">
                                     <td class="column-1">

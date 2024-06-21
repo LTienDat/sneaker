@@ -60,6 +60,12 @@
                     <input type="number"  value="" name="quantity" class="form-control">
                 </div>
             </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="menu">Giá nhập</label>
+                    <input type="number"  value="" name="import_price" class="form-control">
+                </div>
+            </div>
         </div>
     <div class="card-footer">
         <button type="submit" class="btn btn-primary">Lưu</button>

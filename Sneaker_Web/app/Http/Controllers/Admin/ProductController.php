@@ -113,5 +113,16 @@ class ProductController extends Controller
             'message'=> 'Xóa thành sản phẩm thất bại'
         ]);
     }
+
+    public function showare(){
+        $warehouse = $this->productService->getware();
+        dd($warehouse);
+        
+        return view("admin.product.attribute.attribute",[
+            "title" => 'Bảng size và màu',
+            "warehouses"=> $warehouse 
+        
+        ]);
+    }
     
 }

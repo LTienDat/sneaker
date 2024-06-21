@@ -20,17 +20,11 @@
                     <!-- san pham -->
                     <div class="wrap-table-shopping-cart">
                         <?php $total = 0?>
-<<<<<<< HEAD
                     
                     <?php $total = 0;
                     ?>
                     <div class="wrap-table-shopping-cart">
                         
-=======
-
-                    <?php $total = 0?>
-                    <div class="wrap-table-shopping-cart">
->>>>>>> 899e94295808cd1684998bbb2c1f0b0e841b7f75
                         @if(count($products) != 0)
                         <table class="table-shopping-cart">
                             <tbody>
@@ -77,11 +71,7 @@
                                             Xoa
                                         </a></td>
                                 </tr>
-<<<<<<< HEAD
                                 <?php $total += $product->price * $carts[$product->id]['num_product']?>
-=======
-                                <?php $total += $product->price * $carts[$product->id]?>
->>>>>>> 899e94295808cd1684998bbb2c1f0b0e841b7f75
                                 @endforeach
                             </tbody>
                         </table>
@@ -94,11 +84,7 @@
                     <!-- cap nhat gio hang -->
                     <div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
 
-<<<<<<< HEAD
                         <input type="submit" value="Cập nhật giỏ hàng" formaction="/update-cart"
-=======
-                        <input type="" value="Cập nhật giỏ hàng" formaction="/update-cart"
->>>>>>> 899e94295808cd1684998bbb2c1f0b0e841b7f75
                             class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
 
                             <a href="/pay" value="Thanh toán"
@@ -110,4 +96,4 @@
         </div>
     </div>
 </form>
-@endsection
+@endsection 

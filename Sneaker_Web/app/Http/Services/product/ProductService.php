@@ -3,6 +3,7 @@ namespace App\Http\Services\product;
 
 use App\Models\Menu;
 use App\Models\Product;
+use App\Models\WareHouse;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
@@ -80,6 +81,10 @@ class ProductService {
         }
         return false;
 
+    }
+
+    public function getware(){
+        return Product::with('warehouse')->get();
     }
 }
 

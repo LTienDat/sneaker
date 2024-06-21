@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
-<<<<<<< HEAD
 class UserService
 {
     public function create(array $data)
@@ -28,28 +27,6 @@ class UserService
             'email' => 'required|string|email|unique:users|max:255',
             'password' => 'required|string|min:5|max:255',
         ])->validate();
-=======
-class UserService{
-    public function create($request){
-        // Validate request data
-        try {
-            $validatedData = $request->validate([
-                'name' => 'required|string|max:255',
-                'email' => 'required|string|email|unique:users|max:255',
-                'password' => 'required|string|min:5|max:255',
-            ]);
-    
-            return User::create([
-                'name' => $validatedData['name'],
-                'email' => $validatedData['email'],
-                'password' => Hash::make($validatedData['password']),
-            ]);
-        } catch (\Exception $e) {
-            // Log lỗi để xem chi tiết lỗi là gì
-            \Log::error($e->getMessage());
-            return response()->json(['error' => 'Failed to create user'], 500);
-        }
->>>>>>> 899e94295808cd1684998bbb2c1f0b0e841b7f75
     }
     public function getAll(){
         return User::orderByDesc('id')->paginate(15);

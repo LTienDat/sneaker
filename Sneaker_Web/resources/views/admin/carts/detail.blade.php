@@ -20,6 +20,8 @@
             <tr class="table_head">
                 <th class="column-1">Tên sản phẩm</th>
                 <th class="column-2">Ảnh sản phẩm</th>
+                <th class="column-2">Size</th>
+                <th class="column-2">Màu</th>
                 <th class="column-3">Số lượng</th>
                 <th class="column-4">Giá</th>
                 <th class="column-6"></th>
@@ -33,6 +35,8 @@
                         <img src="{{$cart->product->file}}" width="50px" alt="IMG">
                     </div>
                 </td>
+                <td class="column-3">{{$cart->size}}</td>
+                <td class="column-3">{{$cart->color}}</td>
                 <td class="column-3">{{$cart->quantity}}</td>
                 <td class="column-4">{{number_format($cart->price)}}</td>
                 <td class="p-r-15"><a href="/carts/delete/{{$cart->quantity}}">Xoa</a></td>
@@ -40,7 +44,7 @@
             <?php $total += $cart->price * $cart->quantity?>
             @endforeach
             <tr>
-                <td colspan="4" class="text-right">Tổng tiền</td>
+                <td colspan="6  " class="text-right">Tổng tiền</td>
                 <td>{{number_format($total)}}</td>
             </tr>
         </tbody>

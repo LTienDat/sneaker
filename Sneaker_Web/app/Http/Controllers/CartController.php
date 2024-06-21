@@ -20,7 +20,6 @@ class CartController extends Controller
      */
     public function index(Request $request)
     {
-<<<<<<< HEAD
         if (!auth()->user()) {
             echo "<script>
                 var confirmLogin = confirm('Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng, bạn có muốn đăng nhập không?');
@@ -34,14 +33,6 @@ class CartController extends Controller
         $this->cartService->create($request);
         return redirect()->back();
         }
-=======
-        $result = $this->cartService->create($request);
-        if($result === false){
-            Session::Flass('error', 'Thêm vào giỏ hàng thất bại');
-            
-        }
-        return redirect()->back();
->>>>>>> 899e94295808cd1684998bbb2c1f0b0e841b7f75
         
     }
 
