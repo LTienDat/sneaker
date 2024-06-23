@@ -13,11 +13,11 @@ class CreateWereHousesTable extends Migration
      */
     public function up()
     {
-        Schema::create('wareHouses', function (Blueprint $table) {
-            $table->integer('id');
-            $table->string('MaDH')->primary();
+        Schema::create('warehouses', function (Blueprint $table) {
+            $table->id();
             $table->string('quantity');
-            $table->string('size');
+            $table->integer('size');
+            $table->string('color');
             $table->string('import_price');
 
             $table->timestamps();

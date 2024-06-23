@@ -40,27 +40,26 @@ class LoginController extends Controller
 
 
         $credentials = $request->only('email', 'password');
- 
+
         // Attempt to login
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-           
+
             // Regenerate session ID
             $request->session()->regenerate();
 
             if ($user->level === 'USER' && $user->active === '0') {
                 Session::flash('error', 'Tài khoản của bạn chưa được cấp phép hoạt động');
-                return redirect()->back(); 
+                return redirect()->back();
             } elseif ($user->level === "ADMIN" && $user->active === '0') {
                 Session::flash('error', 'Tài khoản của bạn chưa được cấp phép hoạt động');
-                return redirect()->back(); 
-            }elseif($user->level === 'USER' && $user->active === '1'){
+                return redirect()->back();
+            } elseif ($user->level === 'USER' && $user->active === '1') {
                 return redirect()->route('home'); // Redirect to user home
-            }elseif($user->level === "ADMIN" && $user->active === '1'){
+            } elseif ($user->level === "ADMIN" && $user->active === '1') {
                 return redirect()->route('admin'); // Redirect to admin main
             }
         }
-
         // Authentication failed
         Session::flash('error', 'Email hoặc password không đúng');
 

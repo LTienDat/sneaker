@@ -18,10 +18,11 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->longText('content');
-            $table->integer('menu_id');
+            $table->unsignedBigInteger('menu_id');
             $table->integer('price');
             $table->integer('price_sale');
             $table->integer('active');
+            $table->foreign('menu_id')->references('id')->on('menus')->onDelete('cascade');
             $table->timestamps();
         });
     }

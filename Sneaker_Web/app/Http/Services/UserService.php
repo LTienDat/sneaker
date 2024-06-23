@@ -28,35 +28,37 @@ class UserService
             'password' => 'required|string|min:5|max:255',
         ])->validate();
     }
-    public function getAll(){
+    public function getAll()
+    {
         return User::orderByDesc('id')->paginate(15);
     }
 
-    public function update($id ,$request){
-        try{
+    public function update($id, $request)
+    {
+        try {
             $user = User::findOrFail($id);
-            $user -> fill($request->input());
-            $user -> save();
-            Session::flash('success','Cập nhật thành công');
-        }catch(\Exception $e){
-            Session::flash('error','Cập nhật thất bại');
-            \Log::info($e->getMessage());
+            $user->fill($request->input());
+            $user->save();
+            Session::flash('success', 'Cập nhật thành công');
+        } catch (\Exception $e) {
+            Session::flash('error', 'Cập nhật thất bại');
+            // \Log::info($e->getMessage());
             return false;
         }
-        return true;    
+        return true;
     }
 
-    public function getShow($id){
+    public function getShow($id)
+    {
         return User::find($id);;
     }
-    public function delete($request){
+    public function delete($request)
+    {
         $product = USER::where('id', $request->input('id'))->first();
-        if($product){
+        if ($product) {
             $product->delete();
             return true;
         }
         return false;
-
     }
-
 }

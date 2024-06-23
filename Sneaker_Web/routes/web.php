@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\OderListController;
@@ -33,79 +34,77 @@ use App\Http\Middleware\Authenticate;
 */
 
 
-Route::get('admin/login', [LoginController::class,'index'])->name('login');
-Route::post('/logout', [LoginController::class,'logout'])->name('logout');
-Route::get('admin/register', [RegisterController::class,'index']);
-Route::post('admin/register', [RegisterController::class,'create']);
+Route::get('admin/login', [LoginController::class, 'index'])->name('login');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('admin/register', [RegisterController::class, 'index']);
+Route::post('admin/register', [RegisterController::class, 'create']);
 
-Route::post('admin/login', [LoginController::class,'store']);
+Route::post('admin/login', [LoginController::class, 'sto re']);
 
 Route::middleware(['auth'])->group(function () {
 
     Route::prefix('admin')->group(function () {
-        Route::get('/', [MainController::class,'index'])->name('admin');
-        Route::get('/main', [MainController::class,'index']);
-        Route::get('/customer',[OrderListController::class,'index']);
-        Route::get('/customer/view/{customer}',[OrderListController::class,'show']);
-    
-    
+        Route::get('/', [MainController::class, 'index'])->name('admin');
+        Route::get('/main', [MainController::class, 'index']);
+        Route::get('/customer', [OrderListController::class, 'index']);
+        Route::get('/customer/view/{customer}', [OrderListController::class, 'show']);
+
+
         Route::prefix('menus')->group(function () {
-            Route::get('add', [MenuController::class,'create']);
-            Route::post ('add', [MenuController::class,'store']);
-            Route::get ('list', [MenuController::class,'index']);
-            Route::get ('edit/{menu}', [MenuController::class,'show']);
-            Route::post ('edit/{menu}', [MenuController::class,'update']);
-            Route::delete ('destroy', [MenuController::class,'destroy']);
+            Route::get('add', [MenuController::class, 'create']);
+            Route::post('add', [MenuController::class, 'store']);
+            Route::get('list', [MenuController::class, 'index']);
+            Route::get('edit/{menu}', [MenuController::class, 'show']);
+            Route::post('edit/{menu}', [MenuController::class, 'update']);
+            Route::delete('destroy', [MenuController::class, 'destroy']);
         });
 
         Route::prefix('product')->group(function () {
-            Route::get('add', [ProductController::class,'create']);
-            Route::post ('add', [ProductController::class,'store']);
-            Route::get ('list', [ProductController::class,'index']);
-            Route::get ('edit/{product}', [ProductController::class,'show']);
-            Route::post ('edit/{product}', [ProductController::class,'update']);
-            Route::delete ('destroy', [ProductController::class,'destroy']);
-            Route::get ('attribute', [WareHouseController::class,'show']);
-            Route::get ('addAttribute', [WareHouseController::class,'create']);
-            Route::post ('addAttribute', [WareHouseController::class,'store']);
+            Route::get('add', [ProductController::class, 'create']);
+            Route::post('add', [ProductController::class, 'store']);
+            Route::get('list', [ProductController::class, 'index']);
+            Route::get('edit/{product}', [ProductController::class, 'show']);
+            Route::post('edit/{product}', [ProductController::class, 'update']);
+            Route::delete('destroy', [ProductController::class, 'destroy']);
+        });
+        Route::prefix('warehouse')->group(function () {
+            Route::get('list', [WareHouseController::class, 'index']);
+            Route::get('add', [WareHouseController::class, 'create']);
+            Route::post('add', [WareHouseController::class, 'store']);
+            Route::get('edit/{warehouse}', [WareHouseController::class, 'show']);
+            Route::post('edit/{warehouse}', [WareHouseController::class, 'update']);
+            Route::delete('destroy', [WareHouseController::class, 'destroy']);
         });
 
         Route::prefix('supplier')->group(function () {
-            Route::get('list', [SupplierController::class,'index']);
-            Route::get('add', [SupplierController::class,'create']);
-            Route::post('add', [SupplierController::class,'store']);
-            Route::get('edit/{supplier}', [SupplierController::class,'show']);
-            Route::post('edit/{supplier}', [SupplierController::class,'update']);
-            Route::delete('destroy', [SupplierController::class,'destroy']);
+            Route::get('list', [SupplierController::class, 'index']);
+            Route::get('add', [SupplierController::class, 'create']);
+            Route::post('add', [SupplierController::class, 'store']);
+            Route::get('edit/{supplier}', [SupplierController::class, 'show']);
+            Route::post('edit/{supplier}', [SupplierController::class, 'update']);
+            Route::delete('destroy', [SupplierController::class, 'destroy']);
         });
 
         #upload
-        Route::post('upload/services',[UploadController::class,'store']);
+        Route::post('upload/services', [UploadController::class, 'store']);
 
-        Route::get('account/list',[AccountController::class,'index'])->name('admin.account.list');
-        Route::get('account/edit/{account}',[AccountController::class,'show']);
-        Route::post('account/edit/{account}',[AccountController::class,'updateAccount']);
-        Route::delete ('account/destroy', [AccountController::class,'destroy']);
-
-
+        Route::get('account/list', [AccountController::class, 'index'])->name('admin.account.list');
+        Route::get('account/edit/{account}', [AccountController::class, 'show']);
+        Route::post('account/edit/{account}', [AccountController::class, 'updateAccount']);
+        Route::delete('account/destroy', [AccountController::class, 'destroy']);
     });
-
 });
 
 Route::get('index', [UserMainController::class, 'index'])->name('home');
-Route::post('services/load-product',[UserMainController::class,'loadProduct']);
+Route::post('services/load-product', [UserMainController::class, 'loadProduct']);
 
-Route::get('danh-muc/{id}-{slug}',[UserMenuController::class,'index']);
-Route::get('san-pham/{id}-{slug}',[DetailProductController::class,'index']);
+Route::get('danh-muc/{id}-{slug}', [UserMenuController::class, 'index']);
+Route::get('san-pham/{id}-{slug}', [DetailProductController::class, 'index']);
 
-Route::post('add',[CartController::class,'index']);
-Route::get('carts',[CartController::class,'show']);
+Route::post('add', [CartController::class, 'index']);
+Route::get('carts', [CartController::class, 'show']);
 // Route::get('/cart',[CartController::class,'showCart']);
-Route::post('update-cart',[CartController::class,'update']);
-Route::get('carts/delete/{id}',[CartController::class,'destroy']);
-Route::get('pay',[paymentsController::class,'pay']);
-Route::post('pay',[paymentsController::class,'order']);
-
-
-
-
+Route::post('update-cart', [CartController::class, 'update']);
+Route::get('carts/delete/{id}', [CartController::class, 'destroy']);
+Route::get('pay', [paymentsController::class, 'pay']);
+Route::post('pay', [paymentsController::class, 'order']);

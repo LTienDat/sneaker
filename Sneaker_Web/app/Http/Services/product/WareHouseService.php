@@ -1,13 +1,20 @@
-<?php 
+<?php
+
 namespace App\Http\Services\Product;
+
 use App\Models\Product;
 use App\Models\Product_attributes;
 use App\Models\ProductAttribute;
+use App\Models\Supplier;
 use App\Models\WareHouse;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
-class WareHouseService{
-    public function getAll(){
+class WareHouseService
+{
+    public function getAll()
+    {
         return WareHouse::with('product')->get();
     }
 
@@ -15,15 +22,19 @@ class WareHouseService{
     {
         try {
             // Tìm hoặc tạo mới bản ghi dựa trên  và 'size'
-        
-             $productAttribute = WareHouse::updateOrCreate(
-                ['product_id' => $request->input('product_id'),
-                 'size' =>  $request->input('size')
-                 , 'color'=>$request->input('color'),
-                'import_price' => $request->input('import_price')],
-                ['quantity' => \DB::raw('quantity + ' .  $request->input('quantity'))]
+
+            $productAttribute = WareHouse::updateOrCreate(
+                [
+                    'product_id' => $request->input('product_id'),
+                    'size' =>  $request->input('size'), 'color' => $request->input('color'),
+                    'import_price' => $request->input('import_price')
+                ],
+                [
+                    'quantity' => DB::raw('quantity + ' .  $request->input('quantity')),
+                    'supplier_id' => $request->input('supplier_id')
+                ]
             );
-        
+
             if ($productAttribute->wasRecentlyCreated) {
                 Session::flash('success', 'Thêm thành công');
             } else {
@@ -31,13 +42,47 @@ class WareHouseService{
             }
         } catch (\Exception $e) {
             Session::flash('error', 'Thêm/Cập nhật thất bại');
-            \Log::error($e->getMessage());
+            Log::error($e->getMessage());
             return false;
         }
     }
 
-    public function getProduct(){
+    public function getProduct()
+    {
         return Product::get();
     }
+    public function getSupplier()
+    {
+        return Supplier::get();
+    }
+
+    public function getWarehouse($id)
+    {
+        return WareHouse::find($id);
+    }
+
+    public function edit($warehouse, $request)
+    {
+        // dd($request->input());
+        try {
+            $warehouse->fill($request->input());
+            $warehouse->save();
+            Session::flash('success', 'Cập nhật thành công');
+        } catch (\Exception $e) {
+            Session::flash('error', 'Cập nhật thất bại');
+            Log::info($e->getMessage());
+            return false;
+        }
+        return true;
+    }
+
+    public function delete($request)
+    {
+        $warehouse = WareHouse::where('id', $request->input('id'))->first();
+        if ($warehouse) {
+            $warehouse->delete();
+            return true;
+        }
+        return false;
+    }
 }
-?>

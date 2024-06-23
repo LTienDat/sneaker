@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+    protected $table = 'products';
     protected $fillable = [
         'name',
         'description',
@@ -20,19 +21,22 @@ class Product extends Model
         'file',
     ];
 
-    public function menu(){
-        return $this->hasOne(Menu::class, 'id','menu_id')->withDefault(['name'=>'']);
+    public function menu()
+    {
+        return $this->hasOne(Menu::class, 'id', 'menu_id')->withDefault(['name' => '']);
     }
 
-    public function cart(){
-        return $this->belongsTo(Cart::class,'product_id','id');
+    public function cart()
+    {
+        return $this->belongsTo(Cart::class, 'product_id', 'id');
     }
 
-    public function productAttribute(){
-        return $this->hasMany(ProductAttribute::class,'product_id','id');
-    }
+    // public function productAttribute(){
+    //     return $this->hasMany(ProductAttribute::class,'product_id','id');
+    // }
 
-    public function warehouse(){
-        return $this->hasmany(Warehouse::class, 'warehouse_id', 'MaDH');
+    public function warehouse()
+    {
+        return $this->hasMany(Warehouse::class, 'product_id', 'id');
     }
 }

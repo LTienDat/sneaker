@@ -22,9 +22,10 @@ class paymentsController extends Controller
     }
 
     public function order(Request $request){
+        
         $this->payments->pay($request);
 
-       return redirect()->back();
+        return redirect()->back();
    }
 
 }

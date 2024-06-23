@@ -13,6 +13,6 @@ class Supplier extends Model
     ];
 
     public function warehouse(){
-        return $this->belongsTo(Warehouse::class);
+        return $this->hasMany(Warehouse::class, 'supplier_id', 'id');
     }
 }

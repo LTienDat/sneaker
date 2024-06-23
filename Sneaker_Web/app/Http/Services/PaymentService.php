@@ -1,5 +1,7 @@
-<?php 
+<?php
+
 namespace App\Http\Services;
+
 use App\Helpers\Helper;
 use App\Models\Cart;
 use App\Models\Customer;
@@ -7,10 +9,12 @@ use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
-class PaymentService{
-    public function getProduct(){
+class PaymentService
+{
+    public function getProduct()
+    {
         $carts = Session::get('carts');
-        if(is_null($carts)){
+        if (is_null($carts)) {
             return [];
         }
         $productId = array_keys($carts);
@@ -18,12 +22,14 @@ class PaymentService{
             ->where('active', 1)->whereIn('id', $productId)->get();
     }
 
-    public function pay($request){
-        try{
+    public function pay($request)
+    {
+        try {
 
             DB::beginTransaction();
-               $carts = Session::get('carts');
-            if(is_null($carts)){
+            $carts = Session::get('carts');
+
+            if (is_null($carts)) {
                 return false;
             }
             $customer = Customer::create([
@@ -32,38 +38,39 @@ class PaymentService{
                 "phone" => $request->input("phone"),
                 "address" => $request->input("address"),
                 "note" => $request->input("note"),
-            ]); 
-            
-            
+            ]);
+
+
             $this->infoProduct($carts, $customer->id);
-      
-            
-            
+
+
+
             DB::commit();
-            
-            Session::flash("success","Đặt hàng thành công");
+
+            Session::flash("success", "Đặt hàng thành công");
             Session::forget('carts');
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             DB::rollBack();
-            Session::flash("eror","Đặt hàng không thành công, vui lòng thử lại sau");
+            Session::flash("eror", "Đặt hàng không thành công, vui lòng thử lại sau");
             return false;
         }
         return true;
     }
 
-    protected function infoProduct($carts, $customer_id){
+    protected function infoProduct($carts, $customer_id)
+    {
         // Lấy ra các ID sản phẩm từ mảng $carts
         $productIds = array_keys($carts);
-    
+
         // Truy vấn các sản phẩm từ cơ sở dữ liệu dựa trên các ID đã lấy
         $products = Product::select('id', 'name', 'price', 'price_sale', 'file')
             ->where('active', 1)
             ->whereIn('id', $productIds)
             ->get();
-    
+
         // Chuẩn bị mảng dữ liệu để chèn vào cơ sở dữ liệu
         $data = [];
-    
+
         foreach ($products as $product) {
             // Kiểm tra xem ID sản phẩm hiện tại có tồn tại trong $carts không
             if (isset($carts[$product->id])) {
@@ -77,9 +84,8 @@ class PaymentService{
                 ];
             }
         }
-    
+
         // Chèn dữ liệu vào cơ sở dữ liệu sử dụng model Cart
         return Cart::insert($data);
     }
 }
-?>

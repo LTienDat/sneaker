@@ -142,13 +142,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/admin/product/attribute/{{isset($warehouses) ? "{1}" : ''}}" class="nav-link">
+                            <a href="/admin/warehouse/list" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh Sách kho hàng</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/admin/product/addAttribute" class="nav-link">
+                            <a href="/admin/warehouse/add" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Nhập hàng</p>
                             </a>

@@ -19,3 +19,14 @@
 .form-size{
     float: left;
 }
+.email-phone{
+    display: flex;
+    width:100%
+}
+.email-phone .email{
+    width: 65%
+}
+.email-phone .phone{
+    width: 35%;
+    float: right
+}

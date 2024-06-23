@@ -18,7 +18,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="menu">Sản phẩm</label>
-                    <select class="form-controll" name="menu_id" id="">
+                    <select class="form-control" name="menu_id" id="">
                         @foreach ($menus as $menu)
                             <option value="{{$menu->id}}">{{$menu->name}}</option>
                         @endforeach
