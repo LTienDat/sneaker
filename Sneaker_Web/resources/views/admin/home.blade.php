@@ -63,4 +63,23 @@
     </div>
     <!-- ./col -->
 </div>
+
+<div class="row">
+    <p class="Thống kê doanh số"></p>
+    <form action="" class="statistical">
+        @csrf
+        <div class="col-md-4">
+            <label>Từ ngày:</label> 
+            <input style="width:200px" type="date" id="datepicker" name="datepicker" class="form-control">
+            <input type="button" id="btn-dashboard-filter" class="btn btn-primary btn-sm" value="Lọc kết quả" >
+        </div>
+        <div class="col-md-4">
+            <label>Đến ngày:</label> 
+            <input style="width:200px" type="date" id="datepicker2" name="datepicker2" class="form-control">
+        </div>
+    </form>
+    <div class="col-md-12">
+    <div id="myfirstchart" style="height: 250px;"></div>
+    </div>
+</div>
 @endsection

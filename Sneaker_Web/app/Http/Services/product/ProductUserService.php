@@ -4,6 +4,7 @@ namespace App\Http\Services\Product;
 
 use App\Models\Product;
 use App\Models\ProductAttribute;
+use App\Models\ProductImage;
 use App\Models\WareHouse;
 
 class ProductUserService
@@ -30,5 +31,9 @@ class ProductUserService
     {
         $product =  WareHouse::where('product_id', $id)->get();
         return (object)$product;
+    }
+
+    public function showImage($id){
+        return ProductImage::where('product_id', $id)->get();
     }
 }

@@ -91,4 +91,69 @@ $('#upload').change(function(){
         });
     }
 
+$(document).ready(function(){
+    chart30daysorder();
+
+    var Chart = new Morris.Line({
+        // ID of the element in which to draw the chart.
+        element: 'myfirstchart',
+        // Chart data records -- each entry in this array corresponds to a point on
+        // the chart.
+        data: [
+          { year: '2008', value: 20 },
+          { year: '2009', value: 10 },
+          { year: '2010', value: 5 },
+          { year: '2011', value: 5 },
+          { year: '2012', value: 20 }
+        ],
+        // The name of the data record attribute that contains x-values.
+        xkey: 'year',
+        // A list of names of data record attributes that contain y-values.
+        ykeys: ['value'],
+        // Labels for the ykeys -- will be displayed when you hover over the
+        // chart.
+        labels: ['Value']
+      });
+
+    new Morris.Bar({
+        element: 'myfirstchart',
+        lineColors: ['#819C79', '#fc8710', '#A4ADD3', '#766B57'],
+        
+        poinFillColors: ['#ffffff'],
+        poinStrokeColors: ['black'],
+        fillPpacity: 0.6,
+        hideHover: 'auto',
+        parseTime: false,
+        xkey: 'period',
+        behavelLikeLine: true,
+        lables: ['Đơn hàng', 'Doanh số', 'Lợi nhuận', 'Số lượng']
+    })
+    
+    function chart30daysorder(){
+        
+    }
+    $('#btn-dashboard-filter').click(function(){
+        
+        var _token = $('input[name="_token"]').val();
+        var form_date = $('#datepicker').val();
+        var to_date = $('#datepicker2').val();
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{ url('/filterByDate') }}",
+            method: "POST",
+            dataType: "json",
+            data: {form_date: form_date, to_date: to_date, _token: _token},
+            success: function(data){
+                Chart.setData(data);
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+        
+    });
+});
+
 

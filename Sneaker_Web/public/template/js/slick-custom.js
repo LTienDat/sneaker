@@ -7,6 +7,16 @@
         /*==================================================================
         [ Slick1 ]*/
         $('.wrap-slick1').each(function(){
+            // Lấy URL hiện tại
+            var currentUrl = window.location.href;
+
+            // Khởi tạo biến autoplay mặc định là true
+            var autoplay = true;
+
+            // Kiểm tra nếu URL chứa từ "san-pham", thay đổi giá trị của autoplay
+            if (currentUrl.includes("san-pham")) {
+                autoplay = false;
+            }
             var wrapSlick1 = $(this);
             var slick1 = $(this).find('.slick1');
 
@@ -48,7 +58,7 @@
                 fade: true,
                 speed: 1000,
                 infinite: true,
-                autoplay: true,
+                autoplay: autoplay,
                 autoplaySpeed: 6000,
                 arrows: true,
                 appendArrows: $(wrapSlick1),

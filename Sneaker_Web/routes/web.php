@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\OderListController;
 use App\Http\Controllers\Admin\OrderListController;
 use App\Http\Controllers\Admin\ProductAttributeController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProductImageController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\UploadController;
 use App\Http\Controllers\Admin\WareHouseController;
@@ -39,7 +40,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('admin/register', [RegisterController::class, 'index']);
 Route::post('admin/register', [RegisterController::class, 'create']);
 
-Route::post('admin/login', [LoginController::class, 'sto re']);
+Route::post('admin/login', [LoginController::class, 'store']);
 
 Route::middleware(['auth'])->group(function () {
 
@@ -48,6 +49,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/main', [MainController::class, 'index']);
         Route::get('/customer', [OrderListController::class, 'index']);
         Route::get('/customer/view/{customer}', [OrderListController::class, 'show']);
+        Route::post('/filterByDate', [MainController::class, 'filterByDate']);
+
+    
 
 
         Route::prefix('menus')->group(function () {
@@ -67,6 +71,16 @@ Route::middleware(['auth'])->group(function () {
             Route::post('edit/{product}', [ProductController::class, 'update']);
             Route::delete('destroy', [ProductController::class, 'destroy']);
         });
+
+        Route::prefix('productImage')->group(function () {
+            Route::get('list', [ProductImageController::class, 'index']);
+            Route::get('add', [ProductImageController::class, 'create']);
+            Route::post('add', [ProductImageController::class, 'store']);
+            Route::get('edit/{productImage}', [ProductImageController::class, 'show']);
+            Route::post('edit/{productImage}', [ProductImageController::class, 'update']);
+            Route::delete('destroy', [ProductImageController::class, 'destroy']);
+        });
+
         Route::prefix('warehouse')->group(function () {
             Route::get('list', [WareHouseController::class, 'index']);
             Route::get('add', [WareHouseController::class, 'create']);

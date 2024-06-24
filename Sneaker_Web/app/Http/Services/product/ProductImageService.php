@@ -1,17 +1,22 @@
 <?php 
-namespace App\Http\Services;
-use App\Models\Supplier;
+namespace App\Http\Services\Product;
+use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Support\Facades\Session;
 
-class SupplierService{
-    public function show(){
-        return Supplier::all();
+class ProductImageService{
+    public function getAll(){
+        return ProductImage::with('product')->get();
+    }
+
+    public function getProduct(){
+        return Product::get();
     }
 
     public function insert($request){
         try{
             $request->except('_token');
-            Supplier::create($request->all());
+            ProductImage::create($request->all());
     
             Session::flash('success','Thêm sản phẩm thành công');
         }catch(\Exception $e){
@@ -22,14 +27,14 @@ class SupplierService{
         return true;   
     }
 
-    public function get($id){
-        return Supplier::find($id);
+    public function getShow($id){
+        return ProductImage::with('product')->find($id);
     }
 
-    public function edit($supplier,$request){
+    public function edit($ProductImage,$request){
         try{
-            $supplier -> fill($request->input());
-            $supplier -> save();
+            $ProductImage -> fill($request->input());
+            $ProductImage -> save();
             Session::flash('success','Cập nhật thành công');
         }catch(\Exception $e){
             Session::flash('error','Cập nhật thất bại');
@@ -38,8 +43,9 @@ class SupplierService{
         }
         return true;   
     }
-     public function delete($request){
-        $supplier = Supplier::where('id', $request->input('id'))->first();
+
+    public function delete($request){
+        $supplier = ProductImage::where('id', $request->input('id'))->first();
         if($supplier){
             $supplier->delete();
             return true;

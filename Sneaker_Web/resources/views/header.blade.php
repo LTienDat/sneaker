@@ -34,7 +34,15 @@
                         data-notify="{{!is_null(Session::get('carts')) ? count(Session::get('carts')) : 0}}">
                         <i class="zmdi zmdi-shopping-cart"></i>
                     </div>
-
+                    
+                    <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti  " id="">
+                        <div class="box">
+                            <select name="" id="">
+                                <option value="">ssdsd</option>
+                            </select>
+                        </div>
+                    </div>
+                    
 
                 </div>
             </nav>
@@ -58,6 +66,9 @@
                 data-notify="{{!is_null(Session::get('carts')) ? count(Session::get('carts')) : 0}}">
                 <i class="zmdi zmdi-shopping-cart"></i>
             </div>
+
+
+            
         </div>
 
         <!-- Button show menu -->

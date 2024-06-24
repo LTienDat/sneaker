@@ -30,3 +30,9 @@
     width: 35%;
     float: right
 }
+.statistical{
+    display: flex;
+}
+.statistical .col-md-4{
+    margin-left: 40px;
+}

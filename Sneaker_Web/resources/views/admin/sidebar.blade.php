@@ -94,6 +94,31 @@
                     <a href="#" class="nav-link">
                         <i class="fas fa-bars mr-2"></i>
                         <p>
+                            Ảnh chi tiết sản phẩm
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/admin/productImage/list" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh Sách ảnh sản phẩm</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/productImage/add" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Thêm ảnh sản phẩm</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-bars mr-2"></i>
+                        <p>
                             Đơn hàng
                             <i class="right fas fa-angle-left"></i>
                         </p>
@@ -108,7 +133,7 @@
                         <li class="nav-item">
                             <a href="/admin/product/list" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Xem Sản phẩm</p>
+                                <p>Xem đơn hàng</p>
                             </a>
                         </li>
                     </ul>
@@ -169,7 +194,7 @@
                         <li class="nav-item">
                             <a href="/admin/supplier/add" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Thêm nhà cung cấp</p>s
+                                <p>Thêm nhà cung cấp</p>
                             </a>
                         </li>
                         <li class="nav-item">

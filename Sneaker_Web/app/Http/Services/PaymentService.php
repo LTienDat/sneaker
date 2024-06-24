@@ -6,6 +6,8 @@ use App\Helpers\Helper;
 use App\Models\Cart;
 use App\Models\Customer;
 use App\Models\Product;
+use App\Models\WareHouse;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
@@ -39,19 +41,17 @@ class PaymentService
                 "address" => $request->input("address"),
                 "note" => $request->input("note"),
             ]);
+            
 
 
             $this->infoProduct($carts, $customer->id);
-
-
-
             DB::commit();
-
             Session::flash("success", "Đặt hàng thành công");
             Session::forget('carts');
         } catch (\Exception $e) {
             DB::rollBack();
-            Session::flash("eror", "Đặt hàng không thành công, vui lòng thử lại sau");
+            \Log::error('Đặt hàng không thành công: ' . $e->getMessage());
+            Session::flash("error", "Đặt hàng không thành công, vui lòng thử lại sau");
             return false;
         }
         return true;
@@ -61,6 +61,7 @@ class PaymentService
     {
         // Lấy ra các ID sản phẩm từ mảng $carts
         $productIds = array_keys($carts);
+
 
         // Truy vấn các sản phẩm từ cơ sở dữ liệu dựa trên các ID đã lấy
         $products = Product::select('id', 'name', 'price', 'price_sale', 'file')
@@ -81,11 +82,20 @@ class PaymentService
                     'size' => isset($carts[$product->id]['size']) ? $carts[$product->id]['size'] : null,
                     'color' => isset($carts[$product->id]['color']) ? $carts[$product->id]['color'] : null,
                     'price' => Helper::price($product->price, $product->price_sale),
+                    'created_at' => Carbon::now()
                 ];
             }
         }
 
+        // Truy xuất tất cả các bản ghi Warehouse tương ứng với danh sách sản phẩm
+    $warehouses = Warehouse::whereIn('product_id', $productIds)->first();
+    $warehouses->quantity -= $carts[$product->id]['num_product'];
+
+    $warehouses->save();
+
+
+    
         // Chèn dữ liệu vào cơ sở dữ liệu sử dụng model Cart
-        return Cart::insert($data);
+        return Cart::insert($data); 
     }
 }

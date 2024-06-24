@@ -15,11 +15,12 @@ class DetailProductController extends Controller
     public function index($id = '', $slug = ''){
         $product = $this->productService->show($id);
         $productAttributes = $this->productService->showAttribute($id);
+        $productImage = $this->productService->showImage($id);
         return view('products.detail',[
             'title'=> $product->name,
             'products' => $product,
-            'productAttributes'=> $productAttributes
+            'productAttributes'=> $productAttributes,
+            'productImages' => $productImage
         ]);
-        
     }   
 }

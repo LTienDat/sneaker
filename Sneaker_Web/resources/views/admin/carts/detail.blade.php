@@ -39,12 +39,12 @@
                 <td class="column-3">{{$cart->color}}</td>
                 <td class="column-3">{{$cart->quantity}}</td>
                 <td class="column-4">{{number_format($cart->price)}}</td>
-                <td class="p-r-15"><a href="/carts/delete/{{$cart->quantity}}">Xoa</a></td>
+                <td class="p-r-15"><a href="/carts/delete/{{$cart->quantity}}" class="btn btn-primary btn-sm" ><i class="fas fa-trash"></i></a></td>
             </tr>
             <?php $total += $cart->price * $cart->quantity?>
             @endforeach
             <tr>
-                <td colspan="6  " class="text-right">Tổng tiền</td>
+                <td colspan="6" class="text-right">Tổng tiền</td>
                 <td>{{number_format($total)}}</td>
             </tr>
         </tbody>

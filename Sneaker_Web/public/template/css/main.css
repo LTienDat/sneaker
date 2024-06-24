@@ -1202,15 +1202,20 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 /*//////////////////////////////////////////////////////////////////
 [ Slick1 ]*/
-.wrap-slick1 {
+/* .wrap-slick1 {
   position: relative;
-}
+} */
 
 .item-slick1 {
   height: calc(100vh - 40px);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+  overflow: hidden;
+  object-fit: cover;
+}
+.product-image{
+  height: 400px;
 }
 
 .rs1-slick1 .item-slick1 {
