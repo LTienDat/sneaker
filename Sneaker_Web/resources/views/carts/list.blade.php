@@ -13,18 +13,12 @@
                 Giỏ hàng
             </span>
         </div>
-
         <div class="row">
             <div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
-                <div class="m-l--60 m-r--60 m-lr-0-xl">
-                    <!-- san pham -->
+                <div class="m-l--60 m-r-60 m-lr-0-xl">
+                    <?php $total = 0;?>
                     <div class="wrap-table-shopping-cart">
-                        <?php $total = 0?>
-                    
-                    <?php $total = 0;
-                    ?>
-                    <div class="wrap-table-shopping-cart">
-                        
+
                         @if(count($products) != 0)
                         <table class="table-shopping-cart">
                             <tbody>
@@ -38,8 +32,10 @@
                                     <th class="column-6">Total</th>
                                     <th class="column-7"></th>
                                 </tr>
-
+                                
                                 @foreach ($products as $product)
+                                @foreach ($keycarts as $keycart)
+                                @if($product->id == intval(subStr(strval($keycart), 0, -2)))
                                 <tr class="table_row">
                                     <td class="column-1">
                                         <div class="how-itemcart1">
@@ -47,8 +43,9 @@
                                         </div>
                                     </td>
                                     <td class="column-2">{{$product->name}}</td>
-                                    <td class="column-2">{{$carts[$product->id]['size']}}</td>
-                                    <td class="column-3">{{$carts[$product->id]['color']}}</td>
+
+                                    <td class="column-2">{{$carts[$keycart]['size']}}</td>
+                                    <td class="column-3">{{$carts[$keycart]['color']}}</td>
                                     <td class="column-4">{{number_format($product->price)}}</td>
                                     <td class="column-5">
                                         <div class="wrap-num-product flex-w m-l-auto m-r-0">
@@ -57,7 +54,7 @@
                                             </div>
 
                                             <input class="mtext-104 cl3 txt-center num-product" type="number" min="1"
-                                                name="num_product[{{$product->id}}]" value="{{$carts[$product->id]['num_product']}}">
+                                                name="num_product" value="{{$carts[$keycart]['num_product']}}">
 
                                             <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
                                                 <i class="fs-16 zmdi zmdi-plus"></i>
@@ -65,13 +62,15 @@
                                         </div>
                                     </td>
                                     <td class="column-6 subtotal"
-                                        data-price="{{$product->price * $carts[$product->id]['num_product']}}">
-                                        {{number_format($product->price * $carts[$product->id]['num_product'])}}</td>
-                                    <td class="p-r-15"><a href="/carts/delete/{{$product->id}}">
+                                        data-price="{{$product->price * $carts[$keycart]['num_product']}}">
+                                        {{number_format($product->price * $carts[$keycart]['num_product'])}}</td>
+                                    <td class="p-r-15"><a href="/carts/delete/{{$keycart}}">
                                             Xoa
                                         </a></td>
                                 </tr>
-                                <?php $total += $product->price * $carts[$product->id]['num_product']?>
+                                <?php $total += $product->price * $carts[$keycart]['num_product']?>
+                                @endif
+                                @endforeach
                                 @endforeach
                             </tbody>
                         </table>
@@ -81,19 +80,25 @@
                         </div>
                         @endif
                     </div>
-                    <!-- cap nhat gio hang -->
-                    <div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
 
-                        <input type="submit" value="Cập nhật giỏ hàng" formaction="/update-cart"
-                            class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
+                    <div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
+                        <div class="flex-w flex-m m-r-20 m-tb-5">
+                            <input type="submit" value="Cập nhật giỏ hàng" formaction="/update-cart"
+                                class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
 
                             <a href="/pay" value="Thanh toán"
-                            class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">Thanh toán</a>
+                                class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10"
+                                style="margin-left:330px;">Thanh toán</a>
                         </div>
                         @csrf
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </form>
-@endsection 
+
+
+</form>
+@endsection

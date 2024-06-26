@@ -3,17 +3,26 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use App\Models\Statistacal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class MainController extends Controller
 {
 
     public function index()
     {
+        // $latestOrder = Cart::latest()->first();
+        // if ($latestOrder && !Session::has("order")) { 
+        //     echo "<script>
+        //         alert('có đơn hàng mới, mã đơn hàng là {$latestOrder->id}')
+        //     </script>";
+        // }
+        // Session::put("order", true);
         return view("admin.home",
         ["title"=> "Trang quản trị admin"]);
-    }
+}
 
     public function filterByDate(Request $request){
         $data = $request->all();

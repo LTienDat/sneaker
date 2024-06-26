@@ -3,9 +3,11 @@
     font-weight: bold;
 }
 
-.block2-pic hov-img0 {
+.block2-pic {
     width: 319px;
-    height: 390px;
+    height: 325px;
+}.block1{
+    height: 240px;
 }
 
 .flex-c-m {

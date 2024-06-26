@@ -2,7 +2,6 @@
 
 @section('content')
 <form class="bg0 p-t-75 p-b-85" method="post">
-    @include('admin.alert')
     <div class="container">
         <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
             <a href="/index" class="stext-109 cl8 hov-cl1 trans-04">
@@ -33,7 +32,10 @@
                                     <th class="column-6">Total</th>
                                     <th class="column-7"></th>
                                 </tr>
+
                                 @foreach ($products as $product)
+                                @foreach ($keycarts as $keycart)
+                                @if($product->id == intval(subStr(strval($keycart), 0, -2)))
                                 <tr class="table_row">
                                     <td class="column-1">
                                         <div class="how-itemcart1">
@@ -41,31 +43,24 @@
                                         </div>
                                     </td>
                                     <td class="column-2">{{$product->name}}</td>
-                                    <td class="column-2">{{$carts[$product->id]['size']}}</td>
-                                    <td class="column-3">{{$carts[$product->id]['color']}}</td>
+                                    
+                                    <td class="column-2">{{$carts[$keycart]['size']}}</td>
+                                    <td class="column-3">{{$carts[$keycart]['color']}}</td>
                                     <td class="column-4">{{number_format($product->price)}}</td>
-                                    <td class="column-5">
-                                        <div class="wrap-num-product flex-w m-l-auto m-r-0">
-                                            <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-                                                <i class="fs-16 zmdi zmdi-minus"></i>
-                                            </div>
-
-                                            <input class="mtext-104 cl3 txt-center num-product" type="number" min="1"
-                                                name="num_product[{{$product->id}}]" value="{{$carts[$product->id]['num_product']}}">
-
-                                            <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-                                                <i class="fs-16 zmdi zmdi-plus"></i>
-                                            </div>
-                                        </div>
+                                    <td class="column-5 " style="text-align:center">
+                                        <input class="mtext-104 cl3 txt-center num-product w-100 p-10" type="number" min="1"
+                                            name="num_product" value="{{$carts[$keycart]['num_product']}}" readonly>
                                     </td>
                                     <td class="column-6 subtotal"
-                                        data-price="{{$product->price * $carts[$product->id]['num_product']}}">
-                                        {{number_format($product->price * $carts[$product->id]['num_product'])}}</td>
-                                    <td class="p-r-15"><a href="/carts/delete/{{$product->id}}">
+                                        data-price="{{$product->price * $carts[$keycart]['num_product']}}">
+                                        {{number_format($product->price * $carts[$keycart]['num_product'])}}</td>
+                                    <td class="p-r-15"><a href="/carts/delete/{{$keycart}}">
                                             Xoa
                                         </a></td>
                                 </tr>
-                                <?php $total += $product->price * $carts[$product->id]['num_product']?>
+                                <?php $total += $product->price * $carts[$keycart]['num_product']?>
+                                @endif
+                                @endforeach
                                 @endforeach
                             </tbody>
                         </table>
@@ -87,7 +82,19 @@
                         <textarea name="note" id="" class="form-control m-t-15" placeholder="Ghi chú"></textarea>
 
                         <div class="ship m-t-15">Phí ship: 30,000</div>
-                        <div class="flex-w flex-t p-t-27 p-b-33">
+                        <!-- <div class="flex-w flex-t p-t-27 p-b-33 ">
+                            <input type="hidden" name="momo" value="{{$total}}">
+                            <button type="submit" value="Đặt hàng" formaction="/momo_payment" name="payUrl"
+                            class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-t-25"> Thanh toán Momo</button>
+                            @csrf
+                        </div> -->
+                        <div class="flex-w flex-t p-t-27 p-b-33 ">
+                            <input type="hidden" name="vnp" value="{{$total}}">
+                            <button type="submit" value="Đặt hàng" formaction="/vnpay_payment" name="redirect"
+                            class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-t-25"> Thanh toán VNP</button>
+                            @csrf
+                        </div>
+                        <div class="flex-w flex-t p-t-27 p-b-33" style="margin-left: 500px;">
                             <div class="size-208">
                                 <span class="mtext-101 cl2">
                                     Tổng tiền:

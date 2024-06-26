@@ -63,14 +63,8 @@
                                             </div>
                                         </section>
                                     </div>
-
-
                                 </div>
                             </div>
-
-
-
-
                         </div>
                     </div>
                 </div>
@@ -83,7 +77,7 @@
                     </h4>
 
                     <span class="mtext-106 cl2">
-                        {!! \App\Helpers\Helper::price($products->price, $products->price_sale) !!}
+                        {!! number_format(\App\Helpers\Helper::price($products->price, $products->price_sale)) !!}
                     </span>
 
                     <p class="stext-102 cl3 p-t-23">
@@ -118,15 +112,18 @@
                             <div class="size-203 flex-c-m respon6">
                                 Màu
                             </div>
-
+                            <?php $array_color = [];?>
                             <div class="size-204 respon6-next">
                                 <div class="rs1-select2 bor8 bg0">
                                     <select class="js-select2 select2-hidden-accessible" name="color" tabindex="-1"
                                         aria-hidden="true">
                                         <option>Chọn màu</option>
                                         @foreach ($productAttributes as $productAttribute)
+                                        @if(!in_array($productAttribute->color, $array_color))
                                         <option value="{{$productAttribute->color}}">{{$productAttribute->color}}
                                         </option>
+                                        {{$array_color[] = $productAttribute->color}}
+                                        @endif
                                         @endforeach
                                     </select>
                                     <div class="dropDownSelect2"></div>
@@ -200,17 +197,16 @@
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item p-b-10">
                         <a class="nav-link active" data-toggle="tab" href="#description" role="tab"
-                            aria-expanded="true">Description</a>
+                            aria-expanded="true">Nội dung</a>
                     </li>
 
                     <li class="nav-item p-b-10">
                         <a class="nav-link" data-toggle="tab" href="#information" role="tab"
-                            aria-expanded="false">Additional information</a>
+                            aria-expanded="false">Thông tin</a>
                     </li>
 
                     <li class="nav-item p-b-10">
-                        <a class="nav-link" data-toggle="tab" href="#reviews" role="tab" aria-expanded="false">Reviews
-                            (1)</a>
+                        <a class="nav-link" data-toggle="tab" href="#reviews" role="tab" aria-expanded="false">Đánh giá</a>
                     </li>
                 </ul>
 
@@ -219,8 +215,8 @@
                     <!-- - -->
                     <div class="tab-pane fade active show" id="description" role="tabpanel" aria-expanded="true">
                         <div class="how-pos2 p-lr-15-md">
-                            <p class="stext-102 cl6">
-                                {{$products->content}}
+                            <p class="stext-102 cl6" style="fontsize: 12px">
+                                {!!$products->content!!}
                             </p>
                         </div>
                     </div>

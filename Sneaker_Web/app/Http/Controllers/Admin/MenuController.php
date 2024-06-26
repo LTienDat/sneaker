@@ -11,7 +11,6 @@ use App\Models\Menu;
 
 class MenuController extends Controller
 {
-
     protected $menuService;
 
     public function __construct(MenuService $menuService){

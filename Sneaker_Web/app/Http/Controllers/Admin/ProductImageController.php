@@ -16,6 +16,8 @@ class ProductImageController extends Controller
     }
     public function index(){
         $images = $this->productImageService->getAll();
+        
+        // dd($images->product);
         return view("admin.productImage.list",[
             "title" => "Ảnh chi tiết sản phẩm",
             "ProductImages"=> $images

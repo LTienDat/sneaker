@@ -61,29 +61,24 @@ class CartController extends Controller
     public function show()
     {
         $products = $this->cartService->getProduct();
+        $carts =Session::get('carts');
+        if(!empty($carts)){
+            $keycarts = array_keys($carts);
+            foreach( $keycarts as $key=>$value ) {
+                $keycart[] = $value;
+            }
+        }else{
+            $keycart = [];
+        }
         return view('carts.list', [
             'title'=> 'Danh sách giỏ hàng',
             'products' => $products,
-            'carts' => Session::get('carts')
-        ]);
-    }
-    public function showCart(){
-        $products = $this->cartService->getProduct();
-        return view('cart', [
-            'title'=> 'Danh sách giỏ hàng',
-            'productCart' => $products,
-            'carts' => Session::get('carts')
+            'carts' => $carts,
+            'keycarts' => $keycart
         ]);
     }
 
-    public function pay(){
-        $products = $this->cartService->getProduct();
-        return view('pay', [
-            'title'=> 'Danh sách giỏ hàng',
-            'products' => $products,
-            'carts' => Session::get('carts')
-        ]);
-    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -106,6 +101,7 @@ class CartController extends Controller
     public function update(Request $request)
     {
         $this->cartService->update($request);
+
         return redirect('/carts');
     }
 

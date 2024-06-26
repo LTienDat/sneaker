@@ -19,10 +19,12 @@
         @foreach ( $warehouses as $key => $warehouse )
         <tr>
             <td>{{$warehouse->id}}</td>
+            @if($warehouse->product)
             <td>{{$warehouse->product->id}}</td>
             <td>{{$warehouse->product->name}}</td>
             <th><a href="{{$warehouse->product->file}}" target="_blank"><img src="{{$warehouse->product->file}}"
                         height="50px"></a></th>
+            @endif
             <td>{{$warehouse->size}}</td>
             <td>{{$warehouse->color}}</td>
             <td>{{$warehouse->quantity}}</td>

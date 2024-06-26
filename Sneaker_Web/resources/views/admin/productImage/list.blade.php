@@ -16,10 +16,11 @@
         <tbody>
             @foreach ( $ProductImages as $key => $ProductImage )
             <tr>
-                
                 <td>{{$ProductImage->id}}</td>
+                @if($ProductImage->product)
                 <td>{{$ProductImage->product->id}}</td>
                 <td>{{$ProductImage->product->name}}</td>
+                @endif
                 <th><a href="{{$ProductImage->file_1}}" target="_blank"><img src="{{$ProductImage->file_1}}" height="50px"></a></th>
                 <th><a href="{{$ProductImage->file_2}}" target="_blank"><img src="{{$ProductImage->file_2}}" height="50px"></a></th>
                 <th><a href="{{$ProductImage->file_3}}" target="_blank"><img src="{{$ProductImage->file_3}}" height="50px"></a></th>

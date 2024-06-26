@@ -6,7 +6,7 @@
             <div class="block2-pic hov-img0">
                 <img src="{{$product->file}}"  alt="{{$product->name}}">
 
-                <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                <a href="/san-pham/{{$product->id}}-{{Str::slug($product->name,'-')}}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
                     Quick View
                 </a>
             </div> 
@@ -18,7 +18,7 @@
                     </a>
 
                     <span class="stext-105 cl3">
-                        {!!\App\Helpers\Helper::price($product->price, $product->price_sale) !!}
+                        {!!number_format(\App\Helpers\Helper::price($product->price, $product->price_sale)) !!}
                     </span>
                 </div>
 
