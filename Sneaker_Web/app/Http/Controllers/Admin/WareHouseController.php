@@ -27,6 +27,14 @@ class WareHouseController extends Controller
 
         ]);
     }
+
+    public function datail($product_id){
+        $warehouseDetail = $this->warehouseService->getDetail($product_id);
+        return view("admin.warehouse.detail", [
+            "title"=> "Cho tiết sản phẩm tỏng kho hàng",
+            "warehouseDetails"=> $warehouseDetail
+        ]);
+    }
     public function create()
     {
         $product = $this->warehouseService->getProduct();
@@ -58,13 +66,26 @@ class WareHouseController extends Controller
         ]);
     }
 
-    public function update(WareHouse $wareHouse, CreateFormRequest $request)
+    public function update(WareHouse $wareHouse, Request $request)
     {
-        dd(1);
         $this->warehouseService->edit($wareHouse, $request);
-        return redirect('admin/warehouse/list');
+        return redirect('admin/warehouse/detail');
     }
 
+    public function destroyDetail(Request $request)
+    {
+        $result = $this->warehouseService->deleteDetail($request);
+        if ($result) {
+            return response()->json([
+                'error' => false,
+                'message' => 'Xóa thành công sản phẩm'
+            ]);
+        }
+        return response()->json([
+            'error' => true,
+            'message' => 'Xóa thành sản phẩm thất bại'
+        ]);
+    }
     public function destroy(Request $request)
     {
         $result = $this->warehouseService->delete($request);

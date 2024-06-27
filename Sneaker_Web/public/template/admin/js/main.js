@@ -12,6 +12,7 @@ function removeRow(id, url){
             url: url,
             success: function(result){
                 console.log(result.error);
+
                 if (result.error === false) {
                     alert('Xóa thành công');
                     location.reload();
@@ -27,7 +28,7 @@ function removeRow(id, url){
                 location.reload();
             }
         });
-    }
+    }s
 }
 
 
@@ -64,96 +65,88 @@ $('#upload').change(function(){
 });
 
 
-    function updateCart(event) {
-        event.preventDefault(); // Ngăn chặn form con gửi dữ liệu mặc định
+function updateCart(event) {
+    event.preventDefault(); // Ngăn chặn form con gửi dữ liệu mặc định
 
-        // Lấy form con
-        var childForm = document.getElementById('child-form');
+    // Lấy form con
+    var childForm = document.getElementById('child-form');
 
-        // Tạo một FormData object từ form con
-        var formData = new FormData(childForm);
+    // Tạo một FormData object từ form con
+    var formData = new FormData(childForm);
 
-        // Gửi yêu cầu AJAX đến server
-        fetch('/update-cart', {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            // Xử lý kết quả trả về nếu cần
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    }
+    // Gửi yêu cầu AJAX đến server
+    fetch('/update-cart', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        // Xử lý kết quả trả về nếu cần
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
 
 $(document).ready(function(){
-    chart30daysorder();
-
-    var Chart = new Morris.Line({
-        // ID of the element in which to draw the chart.
+    var Chart = new Morris.Bar({
         element: 'myfirstchart',
-        // Chart data records -- each entry in this array corresponds to a point on
-        // the chart.
         data: [
-          { year: '2008', value: 20 },
-          { year: '2009', value: 10 },
-          { year: '2010', value: 5 },
-          { year: '2011', value: 5 },
-          { year: '2012', value: 20 }
+          { team: 'Brazil', nb: 5 },
+          { team: 'Italy', nb: 4 },
+          { team: 'Germany', nb: 4 },
+          { team: 'Uruguay', nb: 2 },
+          { team: 'Argentina', nb: 2 }
         ],
-        // The name of the data record attribute that contains x-values.
-        xkey: 'year',
-        // A list of names of data record attributes that contain y-values.
-        ykeys: ['value'],
-        // Labels for the ykeys -- will be displayed when you hover over the
-        // chart.
-        labels: ['Value']
+        xkey: 'team',
+        ykeys: ['nb'],
+        labels: ['Đơn hàng', 'Doanh số', 'Lợi nhuận', 'Số lượng']
       });
 
-    new Morris.Bar({
-        element: 'myfirstchart',
-        lineColors: ['#819C79', '#fc8710', '#A4ADD3', '#766B57'],
-        
-        poinFillColors: ['#ffffff'],
-        poinStrokeColors: ['black'],
-        fillPpacity: 0.6,
-        hideHover: 'auto',
-        parseTime: false,
-        xkey: 'period',
-        behavelLikeLine: true,
-        lables: ['Đơn hàng', 'Doanh số', 'Lợi nhuận', 'Số lượng']
-    })
-    
-    function chart30daysorder(){
-        
-    }
+
+    // var Chart = new Morris.Bar({
+    //     element: 'myfirstchart',
+    //     barColors: ['#819C79', '#fc8710', '#A4ADD3', '#766B57'], // Corrected property name and color definition
+
+    //     pointFillColors: ['#ffffff'],
+    //     pointStrokeColors: ['black'],
+    //     fillOpacity: 0.6,
+    //     hideHover: 'auto',
+    //     parseTime: false,
+    //     xkey: 'period',
+    //     behaveLikeLine: true, // Corrected property name
+    //     labels: ['Đơn hàng', 'Doanh số', 'Lợi nhuận', 'Số lượng'] // Corrected property name
+    // });
+
     $('#btn-dashboard-filter').click(function(){
-        
         var _token = $('input[name="_token"]').val();
         var form_date = $('#datepicker').val();
         var to_date = $('#datepicker2').val();
         $.ajax({
+            
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: "{{ url('/filterByDate') }}",
+            url: "filterByDate", // Corrected to use route() helper function
             method: "POST",
             dataType: "json",
             data: {form_date: form_date, to_date: to_date, _token: _token},
             success: function(data){
+
                 Chart.setData(data);
             },
             error: function(xhr, status, error) {
-                console.error(xhr.responseText);
+                console.log(url);
+                
             }
         });
-        
     });
 });
+
+
 
 

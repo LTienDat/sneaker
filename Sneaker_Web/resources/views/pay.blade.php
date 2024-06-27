@@ -73,14 +73,14 @@
                             class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
                         @csrf -->
                             
-                        <input type="text" name="name" class="form-control m-t-15" placeholder="Họ và tên">
+                        <input type="text" name="name" value="{{isset($infoCustomer) ? $infoCustomer->name : ""}}" class="form-control m-t-15" placeholder="Họ và tên" unipue>
                         <div class="email-phone">
-                            <input type="email" name="email" class="form-control m-t-15" placeholder="email">
-                            <input type="phone" name="phone" class="form-control m-t-15 m-l-30 " placeholder="Số điện thoại">
+                            <input type="email" name="email" value="{{isset($infoCustomer) ? $infoCustomer->email : ""}}" class="form-control m-t-15" placeholder="email">
+                            <input type="phone" name="phone" value="{{isset($infoCustomer) ? $infoCustomer->phone : ""}}" class="form-control m-t-15 m-l-30 " placeholder="Số điện thoại">
                         </div>
-                        <input type="text" name="address" class="form-control m-t-15" placeholder="Địa chỉ">
-                        <textarea name="note" id="" class="form-control m-t-15" placeholder="Ghi chú"></textarea>
-
+                        <input type="text" name="address" value="{{isset($infoCustomer) ? $infoCustomer->address : ""}}" class="form-control m-t-15" placeholder="Địa chỉ">
+                        <textarea name="note" value="{{isset($infoCustomer) ? $infoCustomer->note : ""}}" id="" class="form-control m-t-15" placeholder="Ghi chú"></textarea>
+                        <input type="hidden" name="payment" value="{{isset($infoCustomer) ? 1 : 0}}">
                         <div class="ship m-t-15">Phí ship: 30,000</div>
                         <!-- <div class="flex-w flex-t p-t-27 p-b-33 ">
                             <input type="hidden" name="momo" value="{{$total}}">
@@ -90,7 +90,7 @@
                         </div> -->
                         <div class="flex-w flex-t p-t-27 p-b-33 ">
                             <input type="hidden" name="vnp" value="{{$total}}">
-                            <button type="submit" value="Đặt hàng" formaction="/vnpay_payment" name="redirect"
+                            <button type="submit" value="1" formaction="/pay" name="payment_VNP"
                             class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-t-25"> Thanh toán VNP</button>
                             @csrf
                         </div>
@@ -103,12 +103,12 @@
     
                             <div class="size-209 p-t-1">
                                 <span class="mtext-110 cl2 cart-total">
-                                    {{number_format($total + 30000)}}
+                                    {{isset($infoCustomer) ? 0 : number_format($total + 30000)}}
                                 </span>
                             </div>
                             <button type="submit" value="Đặt hàng" formaction=""
                                 class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10"> Đặt hàng</button>
-                            @csrf
+                                @csrf
                         </div>
                     </div>
                 </div>

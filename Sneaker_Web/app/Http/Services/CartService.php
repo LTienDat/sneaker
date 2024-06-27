@@ -16,6 +16,7 @@
 public function create( $request)
 {
     if (Auth::check()) {
+        
         $num = (int)$request->input('num_product');
         $product_id = (int)$request->input('product_id');
         $size = (int)$request->input('size');

@@ -79,7 +79,7 @@
         </div>
     </form>
     <div class="col-md-12">
-    <div id="myfirstchart" style="height: 250px;"></div>
+        <div id="myfirstchart" style="height: 250px;"></div>
     </div>
 </div>
 @endsection

@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Services\PaymentService;
 use App\Models\Cart;
+use App\Models\InfoCustomTemporary;
+use App\Models\Payment;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class paymentsController extends Controller
 {
@@ -14,6 +19,7 @@ class paymentsController extends Controller
         $this->payments = $payments;
     }
     public function pay(){
+        $infoCustomer = InfoCustomTemporary::first();
         $products = $this->payments->getProduct();
         $carts = Session::get('carts');
         if(!empty($carts)){
@@ -28,88 +34,31 @@ class paymentsController extends Controller
             'title'=> 'Danh sách giỏ hàng',
             'products' => $products,
             'carts' => $carts,
-            'keycarts' => $keycart
+            'keycarts' => $keycart,
+            "infoCustomer" => $infoCustomer,
         ]);
     }
 
-    public function order(Request $request){
-  
-        $this->payments->pay($request);
-
-        return redirect()->back();
-   }
-   public function VNPay(Request $request){
-        $total = $request->input('vnp');
-        $maxId = Cart::max('id');
-
-        $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-        $vnp_Returnurl = "http://127.0.0.1:8000/pay";
-        $vnp_TmnCode = "LSX7MU8C";//Mã website tại VNPAY 
-        $vnp_HashSecret = "V8AF1H09UUY5FTW4X0DVB73M44MHI4JL"; //Chuỗi bí mật
-        
-        $vnp_TxnRef = $maxId + 1; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này 
-        $vnp_OrderInfo = "Thanh toán đơn hàng đặt tại Sneaker Store";
-        $vnp_OrderType = "billPayment";
-        $vnp_Amount = ($total + 30000) * 100;
-        $vnp_Locale = "VNĐ";
-        $vnp_BankCode = "NCB";
-        $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
-        //Add Params of 2.0.1 Version
-
-        $inputData = array(
-            "vnp_Version" => "2.1.0",
-            "vnp_TmnCode" => $vnp_TmnCode,
-            "vnp_Amount" => $vnp_Amount,
-            "vnp_Command" => "pay",
-            "vnp_CreateDate" => date('YmdHis'),
-            "vnp_CurrCode" => "VND",
-            "vnp_IpAddr" => $vnp_IpAddr,
-            "vnp_Locale" => $vnp_Locale,
-            "vnp_OrderInfo" => $vnp_OrderInfo,
-            "vnp_OrderType" => $vnp_OrderType,
-            "vnp_ReturnUrl" => $vnp_Returnurl,
-            "vnp_TxnRef" => $vnp_TxnRef
-
-        );
-        
-        if (isset($vnp_BankCode) && $vnp_BankCode != "") {
-            $inputData['vnp_BankCode'] = $vnp_BankCode;
+    public function order(Request $request){    
+        if($request->input("payment_VNP") == "1") {
+            return $this->payments->VNPay($request);
+        }else{
+            $this->payments->pay($request);
+            return redirect()->back();
         }
-        if (isset($vnp_Bill_State) && $vnp_Bill_State != "") {
-            $inputData['vnp_Bill_State'] = $vnp_Bill_State;
-        }
-        
-        //var_dump($inputData);
-        ksort($inputData);
-        $query = "";
-        $i = 0;
-        $hashdata = "";
-        foreach ($inputData as $key => $value) {
-            if ($i == 1) {
-                $hashdata .= '&' . urlencode($key) . "=" . urlencode($value);
-            } else {
-                $hashdata .= urlencode($key) . "=" . urlencode($value);
-                $i = 1;
-            }
-            $query .= urlencode($key) . "=" . urlencode($value) . '&';
-        }
-        
-        $vnp_Url = $vnp_Url . "?" . $query;
-        if (isset($vnp_HashSecret)) {
-            $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret);//  
-            $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
-        }
-        $returnData = array('code' => '00'
-            , 'message' => 'success'
-            , 'data' => $vnp_Url);
-            if (isset($_POST['redirect'])) {
-                header('Location: ' . $vnp_Url);
-                die();
-            } else {
-                echo json_encode($returnData);
-            }
-            // vui lòng tham khảo thêm tại code demo
-    
-   }
+    }
+
+//    public function VNPay(Request $request){   
+//         $this->payments->VNPay($request);
+//    }
+
+public function VNPayReturn(Request $request){
+    $infoPayment = $this->payments->VNPReturn($request);
+    return view('paymentVNP', [
+        'title' => 'Thông tin giao dịch',
+        'infoPayment' => $infoPayment
+    ]);
+}
+
 
 }

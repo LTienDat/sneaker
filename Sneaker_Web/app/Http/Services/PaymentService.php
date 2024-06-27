@@ -8,6 +8,8 @@ use App\Jobs\SendMail;
 use App\Jobs\SendMailAdmin;
 use App\Models\Cart;
 use App\Models\Customer;
+use App\Models\InfoCustomTemporary;
+use App\Models\Payment;
 use App\Models\Product;
 use App\Models\WareHouse;
 use Illuminate\Support\Carbon;
@@ -53,13 +55,14 @@ class PaymentService
             
             
             
-            $this->infoProduct($carts, $customer->id);
+            $this->infoProduct($carts, $customer->id, $request);
   
             DB::commit();
             Session::flash("success", "Đặt hàng thành công");
             
             SendMail::dispatch($request->input("email"))->delay(now()->addSeconds(5));
             SendMailAdmin::dispatch('datletien.18012002@gmail.com')->delay(now()->addSeconds(5));
+            InfoCustomTemporary::truncate();
             Session::forget('carts');
         } catch (\Exception $e) {
             DB::rollBack();
@@ -70,7 +73,7 @@ class PaymentService
         return true;
     }
 
-    protected function infoProduct($carts, $customer_id)
+    protected function infoProduct($carts, $customer_id, $request)
     {
         // Lấy ra các ID sản phẩm từ mảng $carts
         $keyProductId = [];
@@ -98,7 +101,8 @@ class PaymentService
                     'quantity' => $carts[$productId]['num_product'], // Lấy số lượng từ $carts
                     'size' => isset($carts[$productId]['size']) ? $carts[$productId]['size'] : null,
                     'color' => isset($carts[$productId]['color']) ? $carts[$productId]['color'] : null,
-                    'price' => Helper::price($product->price, $product->price_sale),
+                    'payment' => $request->input('payment'),
+                    'price' => Helper::price($product->price, $product->price_sale) + 30000,
                     'created_at' => Carbon::now()
                 ];
             }
@@ -113,5 +117,115 @@ class PaymentService
         // Chèn dữ liệu vào cơ sở dữ liệu sử dụng model Cart
         return Cart::insert($data); 
         
+    }
+
+    public function VNPReturn($request){
+        $VNP_data = $request->all();
+        Session::put('VNPPayment',  $VNP_data);
+        $VNPPayment = Session::get('VNPPayment');
+        
+        
+        if(isset($VNPPayment)){
+            if($VNPPayment['vnp_TransactionStatus'] == "00"){
+        $data = [
+            'order_id'=> $VNPPayment['vnp_TxnRef'],
+            'price'=> $VNPPayment['vnp_Amount'],
+            'note'=> $VNPPayment['vnp_OrderInfo'],
+            'vnp_response_code'=> $VNPPayment['vnp_ResponseCode'],
+            'code_vnpay'=> $VNPPayment['vnp_BankTranNo'],
+            'code_bank'=> $VNPPayment['vnp_BankCode'],
+            'transactionCode'=> $VNPPayment['vnp_TxnRef'],
+            'created_at' => Carbon::now(),
+            'updated_at'=> Carbon::now()
+        ];
+        }
+
+        
+    }
+    Payment::insert($data);
+    
+    return Payment::where('order_id',  $VNPPayment['vnp_TxnRef'])->first();
+    }
+
+    public function VNPay($request){
+        InfoCustomTemporary::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'phone' => $request->input('phone'),
+            'address' => $request->input('address'),
+            'note' => $request->input('note'),
+            'amount' => $request->input('vnp') + 30000
+        ]);
+        $total = $request->input('vnp');
+        $maxId = Cart::max('id');
+
+        $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
+        $vnp_Returnurl = "http://127.0.0.1:8000/vnpay-return";
+        $vnp_TmnCode = "LSX7MU8C";//Mã website tại VNPAY 
+        $vnp_HashSecret = "V8AF1H09UUY5FTW4X0DVB73M44MHI4JL"; //Chuỗi bí mật
+        
+        $vnp_TxnRef = $maxId + 1; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này 
+        $vnp_OrderInfo = $request->input('note');
+        $vnp_OrderType = "billPayment";
+        $vnp_Amount = $total + 30000;
+        $vnp_Locale = "VNĐ";
+        $vnp_BankCode = "NCB";
+        $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
+        //Add Params of 2.0.1 Version
+
+        $inputData = array(
+            "vnp_Version" => "2.1.0",
+            "vnp_TmnCode" => $vnp_TmnCode,
+            "vnp_Amount" => $vnp_Amount,
+            "vnp_Command" => "pay",
+            "vnp_CreateDate" => date('YmdHis'),
+            "vnp_CurrCode" => "VND",
+            "vnp_IpAddr" => $vnp_IpAddr,
+            "vnp_Locale" => $vnp_Locale,
+            "vnp_OrderInfo" => $vnp_OrderInfo,
+            "vnp_OrderType" => $vnp_OrderType,
+            "vnp_ReturnUrl" => $vnp_Returnurl,
+            "vnp_TxnRef" => $vnp_TxnRef
+
+        );
+        
+        if (isset($vnp_BankCode) && $vnp_BankCode != "") {
+            $inputData['vnp_BankCode'] = $vnp_BankCode;
+        }
+        if (isset($vnp_Bill_State) && $vnp_Bill_State != "") {
+            $inputData['vnp_Bill_State'] = $vnp_Bill_State;
+        }
+        
+        //var_dump($inputData);
+        ksort($inputData);
+        $query = "";
+        $i = 0;
+        $hashdata = "";
+        foreach ($inputData as $key => $value) {
+            if ($i == 1) {
+                $hashdata .= '&' . urlencode($key) . "=" . urlencode($value);
+            } else {
+                $hashdata .= urlencode($key) . "=" . urlencode($value);
+                $i = 1;
+            }
+            $query .= urlencode($key) . "=" . urlencode($value) . '&';
+        }
+        
+        $vnp_Url = $vnp_Url . "?" . $query;
+        if (isset($vnp_HashSecret)) {
+            $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret);//  
+            $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
+        }
+        $returnData = array('code' => '00'
+            , 'message' => 'success'
+            , 'data' => $vnp_Url);
+            if (isset($_POST['payment'])) {
+                header('Location: ' . $vnp_Url);
+                die();
+            } else {
+                echo json_encode($returnData);
+            }
+            // vui lòng tham khảo thêm tại code demo
+    
     }
 }

@@ -50,7 +50,8 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/main', [MainController::class, 'index']);
             Route::get('/customer', [OrderListController::class, 'index']);
             Route::get('/customer/view/{customer}', [OrderListController::class, 'show']);
-            Route::post('/filterByDate', [MainController::class, 'filterByDate']);
+            Route::post('/filterByDate', [MainController::class, 'filterByDate'])->name('filterByDate');
+
 
         
 
@@ -84,10 +85,12 @@ Route::middleware(['auth'])->group(function () {
 
             Route::prefix('warehouse')->group(function () {
                 Route::get('list', [WareHouseController::class, 'index']);
+                Route::get('detail/{product_id}', [WareHouseController::class, 'datail']);
                 Route::get('add', [WareHouseController::class, 'create']);
                 Route::post('add', [WareHouseController::class, 'store']);
                 Route::get('edit/{warehouse}', [WareHouseController::class, 'show']);
                 Route::post('edit/{warehouse}', [WareHouseController::class, 'update']);
+                Route::delete('destroyDetail', [WareHouseController::class, 'destroyDetail']);
                 Route::delete('destroy', [WareHouseController::class, 'destroy']);
             });
 
@@ -124,5 +127,6 @@ Route::post('update-cart', [CartController::class, 'update']);
 Route::get('carts/delete/{id}', [CartController::class, 'destroy']);
 Route::get('pay', [paymentsController::class, 'pay']);
 Route::post('pay', [paymentsController::class, 'order']);
-Route::post('vnpay_payment', [paymentsController::class, 'VNPay']);
+Route::post('vnpay_payment', [paymentsController::class, 'order']);
+Route::get ('/vnpay-return', [paymentsController::class, 'VNPayReturn']);
 //Route::post('momo_payment', [paymentsController::class, 'Momo']);

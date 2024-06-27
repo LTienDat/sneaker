@@ -15,7 +15,11 @@ class WareHouseService
 {
     public function getAll()
     {
-        return WareHouse::with('product')->get();
+        return WareHouse::select('product_id')->distinct('foreign_key_column')->with('product')->get();
+    }
+
+    public function getDetail($product_id){
+        return WareHouse::with('product')->where('product_id', $product_id)->get();
     }
 
     public function insertOrUpdate($request)
@@ -76,7 +80,17 @@ class WareHouseService
         return true;
     }
 
-    public function delete($request)
+    public function delete($request){
+        $warehouse = WareHouse::where('product_id',$request->input('id'))->get();
+        if ($warehouse) {
+            foreach ($warehouse as $key => $value) {
+                $value->delete();
+            }
+            return true;
+        }
+        return false;
+    }
+    public function deleteDetail($request)
     {
         $warehouse = WareHouse::where('id', $request->input('id'))->first();
         if ($warehouse) {

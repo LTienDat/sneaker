@@ -16,7 +16,8 @@ class Cart extends Model
         "quantity",
         "color",
         "size",
-        "price"
+        "price",
+        "payment",
 
     ];
     public function product(){

@@ -24,29 +24,31 @@ class MainController extends Controller
         ["title"=> "Trang quản trị admin"]);
 }
 
-    public function filterByDate(Request $request){
-        $data = $request->all();
-        $from_date = $data["from_date"];
-        $to_date = $data["to_date"];
-        
-        $statistics = Statistacal::whereBetween('order_date', [$from_date, $to_date])
-            ->orderBy('order_date', 'ASC')
-            ->get();
+// Assuming Statistical is your model name
+
+public function filterByDate(Request $request){
+    $from_date = $request->input('form_date');
+    $to_date = $request->input('to_date');
     
-        $chart_data = [];
-        
-        foreach ($statistics as $value) {
-            $chart_data[] = array(
-                'period' => $value->order_date,
-                'order' => $value->total_order,
-                'sales' => $value->sales,
-                'profit' => $value->profit,
-                'quantity' => $value->quantity,
-            );
-        }
+    $statistics = Statistacal::whereBetween('orderDate', [$from_date, $to_date])
+        ->orderBy('orderDate', 'ASC')
+        ->get();
     
-        return response()->json($chart_data);
+    $chart_data = [];
+    
+    foreach ($statistics as $value) {
+        $chart_data[] = [
+            'period' => $value->order_date,
+            'order' => $value->total_order,
+            'sales' => $value->sales,
+            'profit' => $value->profit,
+            'quantity' => $value->quantity,
+        ];
     }
+
+    return response()->json($chart_data);
+}
+
     
     
 }
