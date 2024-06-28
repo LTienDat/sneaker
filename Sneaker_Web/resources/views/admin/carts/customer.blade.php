@@ -1,19 +1,15 @@
 @extends('admin.main')
 
 @section('content')
-    <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
-            </button>
-          </div>
-        </div>
-    </div>
+<form action="{{ route('searchOrder') }}" method="post" style="display:flex">
+    @csrf
+    <input type="text" name="query" class="col-md-4 form-control" placeholder="Tìm kiếm" required>
+    <button type="submit"><i class="fas fa-search"></i></button>
+</form>
     <table class="table">
         <thead>
             <tr>
+                <th style="width:50px">ID Đơn hàng:</th>
                 <th style="width:50px">ID:</th>
                 <th>Tên Khách hàng</th>
                 <th>Số điện thoại</th>
@@ -25,6 +21,12 @@
         <tbody>
             @foreach ( $customers as $key => $customer )
             <tr>
+                
+                <td><?php 
+                    foreach($customer->carts as $key => $value){
+                        echo $value->id;
+                    }
+                ?></td>
                 <td>{{$customer->id}}</td>
                 <td>{{$customer->name}}</td>
                 <td>{{$customer->phone}}</td>

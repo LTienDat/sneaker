@@ -61,4 +61,16 @@ class UserService
         }
         return false;
     }
+
+    public function searchAccount($request)
+    {
+        $key = $request->input('query');
+
+        // Sử dụng paginate trước khi get() để lấy dữ liệu đã phân trang
+        return User::where(function ($query) use ($key) {
+            $query->where('name', 'like', '%' . $key . '%')
+                ->orWhere('email', $key)
+                ->orWhere('level', $key);
+        })->paginate(15); // Phân trang với mỗi trang 15 sản phẩm
+    }
 }

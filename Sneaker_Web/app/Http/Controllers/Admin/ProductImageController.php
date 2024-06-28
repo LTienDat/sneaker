@@ -24,6 +24,16 @@ class ProductImageController extends Controller
         ]);
     }
 
+    
+    public function search(Request $request){
+        $ProductImages = $this->productImageService->searchProductImage($request);
+
+        return view("admin.productImage.list", [
+            'title'=>'Ảnh chi tiết sản phẩm',
+            'ProductImages'=>$ProductImages
+        ]);
+    }
+
     public function create(){
         $products = $this->productImageService->getProduct();
         return view("admin.productImage.add",[

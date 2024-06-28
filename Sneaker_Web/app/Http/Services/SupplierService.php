@@ -46,5 +46,18 @@ class SupplierService{
         }
         return false;
      }
+
+     public function searchSupplier($request)
+     {
+         $key = $request->input('query');
+ 
+         // Sử dụng paginate trước khi get() để lấy dữ liệu đã phân trang
+         return Supplier::where(function ($query) use ($key) {
+             $query->where('name', 'like', '%' . $key . '%')
+                 ->orWhere('email', $key)
+                 ->orWhere('phone', $key)
+                 ->orWhere('address', $key);
+         })->paginate(15); // Phân trang với mỗi trang 15 sản phẩm
+     }
 }
 ?>

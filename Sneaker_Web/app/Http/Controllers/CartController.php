@@ -13,18 +13,13 @@ class CartController extends Controller
     public function __construct(CartService $cartService){
         $this->cartService = $cartService;    
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
         if (!auth()->user()) {
             echo "<script>
                 var confirmLogin = confirm('Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng, bạn có muốn đăng nhập không?');
                 if (confirmLogin) {
-                    window.location.href = 'admin/login';
+                    window.location.href = 'login';
                 } else {
                     window.history.back();
                 }
@@ -36,29 +31,8 @@ class CartController extends Controller
         
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-
-    public function show()
+    public function show(Request $request)
     {
         $products = $this->cartService->getProduct();
         $carts =Session::get('carts');
@@ -74,7 +48,9 @@ class CartController extends Controller
             'title'=> 'Danh sách giỏ hàng',
             'products' => $products,
             'carts' => $carts,
-            'keycarts' => $keycart
+            'keycarts' => $keycart,
+            'request' => $request
+
         ]);
     }
 
@@ -119,7 +95,6 @@ class CartController extends Controller
 
     public function order(Request $request){
          $this->cartService->pay($request);
-
         return redirect()->back();
     }
 }

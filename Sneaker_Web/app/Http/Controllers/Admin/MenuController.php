@@ -22,6 +22,14 @@ class MenuController extends Controller
             'menus' => $this->menuService->getAll()
         ]);
     }
+    public function search(Request $request){
+        $menus = $this->menuService->searchMenu($request);
+
+        return view("admin.menu.list", [
+            'title'=>'Danh sách danh mục',
+            'menus'=>$menus
+        ]);
+    }
     public function create(){
         return view("admin.menu.add", [
             "title"=> "Thêm Danh mục mới",

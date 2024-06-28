@@ -33,5 +33,6 @@
 	<link rel="stylesheet" type="text/css" href="/Template/css/main.css">
 	<link rel="stylesheet" type="text/css" href="/Template/css/style.css">
 <!--===============================================================================================-->
+
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 </head>

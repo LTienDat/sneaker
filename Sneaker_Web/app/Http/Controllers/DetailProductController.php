@@ -12,7 +12,7 @@ class DetailProductController extends Controller
     public function __construct(ProductUserService $productService){
         $this->productService = $productService;
     }
-    public function index($id = '', $slug = ''){
+    public function index($id = '', $slug = '', Request $request){
         $product = $this->productService->show($id);
         $productAttributes = $this->productService->showAttribute($id);
         $productImage = $this->productService->showImage($id);
@@ -20,7 +20,8 @@ class DetailProductController extends Controller
             'title'=> $product->name,
             'products' => $product,
             'productAttributes'=> $productAttributes,
-            'productImages' => $productImage
+            'productImages' => $productImage,
+            'request' => $request
         ]);
     }   
 }

@@ -18,7 +18,7 @@ class paymentsController extends Controller
     public function __construct(PaymentService $payments){
         $this->payments = $payments;
     }
-    public function pay(){
+    public function pay(Request $request){
         $infoCustomer = InfoCustomTemporary::first();
         $products = $this->payments->getProduct();
         $carts = Session::get('carts');
@@ -36,6 +36,7 @@ class paymentsController extends Controller
             'carts' => $carts,
             'keycarts' => $keycart,
             "infoCustomer" => $infoCustomer,
+            'request' => $request
         ]);
     }
 
@@ -56,7 +57,8 @@ public function VNPayReturn(Request $request){
     $infoPayment = $this->payments->VNPReturn($request);
     return view('paymentVNP', [
         'title' => 'Thông tin giao dịch',
-        'infoPayment' => $infoPayment
+        'infoPayment' => $infoPayment,
+        'request' => $request
     ]);
 }
 

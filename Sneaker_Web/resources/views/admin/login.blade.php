@@ -10,7 +10,7 @@
 
 <body class="hold-transition login-page">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Đăng nhập Admin</b></a>
+    <a href="../../index2.html"><b>Đăng nhập</b></a>
   </div>
   <!-- /.login-logo -->
   <div class="card">

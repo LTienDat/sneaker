@@ -20,8 +20,19 @@ class OrderListController extends Controller
             'customers'=> $this->orderservice->getCustomer(),
         ]);
     }
+    
+    public function search(Request $request){
+        $customers = $this->orderservice->searchOrder($request);
+        return view("admin.carts.customer", [
+            'title'=>'Danh sách đơn đặt hàng',
+            'customers'=>$customers
+        ]);
+    }
+
 
     public function show(Customer $customer, Cart $cart){
+        // $a = $customer->carts()->with('product')->get();
+        // dd($a);
         return view('admin.carts.detail',[
             'title'=> 'Chi tiết đơn hàng',
             'customers' => $customer,

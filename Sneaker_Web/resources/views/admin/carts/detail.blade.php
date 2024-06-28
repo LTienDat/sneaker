@@ -24,12 +24,13 @@
                 <th class="column-2">Màu</th>
                 <th class="column-3">Số lượng</th>
                 <th class="column-4">Giá</th>
+                <th class="column-4">Phương thức thanh toán</th>
                 <th class="column-6"></th>
             </tr>
 
             @foreach ($carts as $cart)
             <tr class="table_row">
-                <td class="column-1">{{$cart->product->name}}</td>
+                <td class="column-1">{{$cart->product->name}}</td> 
                 <td class="column-2">
                     <div class="how-itemcart1">
                         <img src="{{$cart->product->file}}" width="50px" alt="IMG">
@@ -39,6 +40,7 @@
                 <td class="column-3">{{$cart->color}}</td>
                 <td class="column-3">{{$cart->quantity}}</td>
                 <td class="column-4">{{number_format($cart->price)}}</td>
+                <td class="column-4">{{$cart->payment == 0 ? "Thanh toán khi nhận hàng" : "Thanh toán VNP"}}</td>
                 <td class="p-r-15"><a href="/carts/delete/{{$cart->quantity}}" class="btn btn-primary btn-sm" ><i class="fas fa-trash"></i></a></td>
             </tr>
             <?php $total += $cart->price * $cart->quantity?>

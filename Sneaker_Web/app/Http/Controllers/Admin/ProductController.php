@@ -14,24 +14,25 @@ class ProductController extends Controller
     public function __construct(ProductService $productService){
         $this->productService = $productService;
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
+        
         return view("admin.product.list", [
             'title'=>'Danh sách sản phẩm',
-            'products'=>$this->productService->get()
+            'products'=>$this->productService->get(),
+        
+        ]);
+    }
+    public function search(Request $request){
+        $products = $this->productService->searchProduct($request);
+
+        return view("admin.product.list", [
+            'title'=>'Danh sách sản phẩm',
+            'products'=>$products
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return View('admin.product.add', [

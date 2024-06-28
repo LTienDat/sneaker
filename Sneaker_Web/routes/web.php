@@ -16,6 +16,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\paymentsController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserMainController;
 use App\Http\Controllers\UserMenuController;
 use App\Models\ProductAttribute;
@@ -35,12 +36,12 @@ use App\Http\Middleware\Authenticate;
 */
 
 
-Route::get('admin/login', [LoginController::class, 'index'])->name('login');
+Route::get('login', [LoginController::class, 'index'])->name('login');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('admin/register', [RegisterController::class, 'index']);
 Route::post('admin/register', [RegisterController::class, 'create']);
 
-Route::post('admin/login', [LoginController::class, 'store']);
+Route::post('login', [LoginController::class, 'store']);
 
 Route::middleware(['auth'])->group(function () {
     Route::middleware(['admin'])->group(function () {
@@ -49,17 +50,18 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/', [MainController::class, 'index'])->name('admin');
             Route::get('/main', [MainController::class, 'index']);
             Route::get('/customer', [OrderListController::class, 'index']);
+            Route::post('/customer', [OrderListController::class, 'search'])->name('searchOrder');
             Route::get('/customer/view/{customer}', [OrderListController::class, 'show']);
             Route::post('/filterByDate', [MainController::class, 'filterByDate'])->name('filterByDate');
 
 
         
 
-
             Route::prefix('menus')->group(function () {
                 Route::get('add', [MenuController::class, 'create']);
                 Route::post('add', [MenuController::class, 'store']);
                 Route::get('list', [MenuController::class, 'index']);
+                Route::post('list', [MenuController::class, 'search'])->name('searchMenu');;
                 Route::get('edit/{menu}', [MenuController::class, 'show']);
                 Route::post('edit/{menu}', [MenuController::class, 'update']);
                 Route::delete('destroy', [MenuController::class, 'destroy']);
@@ -69,6 +71,7 @@ Route::middleware(['auth'])->group(function () {
                 Route::get('add', [ProductController::class, 'create']);
                 Route::post('add', [ProductController::class, 'store']);
                 Route::get('list', [ProductController::class, 'index']);
+                Route::post('list', [ProductController::class, 'search'])->name('searchProduct');;
                 Route::get('edit/{product}', [ProductController::class, 'show']);
                 Route::post('edit/{product}', [ProductController::class, 'update']);
                 Route::delete('destroy', [ProductController::class, 'destroy']);
@@ -76,6 +79,7 @@ Route::middleware(['auth'])->group(function () {
 
             Route::prefix('productImage')->group(function () {
                 Route::get('list', [ProductImageController::class, 'index']);
+                Route::post('list', [ProductImageController::class, 'search'])->name('searchProductImage');
                 Route::get('add', [ProductImageController::class, 'create']);
                 Route::post('add', [ProductImageController::class, 'store']);
                 Route::get('edit/{productImage}', [ProductImageController::class, 'show']);
@@ -85,6 +89,7 @@ Route::middleware(['auth'])->group(function () {
 
             Route::prefix('warehouse')->group(function () {
                 Route::get('list', [WareHouseController::class, 'index']);
+                Route::post('list', [WareHouseController::class, 'search'])->name('searchWarehouse');
                 Route::get('detail/{product_id}', [WareHouseController::class, 'datail']);
                 Route::get('add', [WareHouseController::class, 'create']);
                 Route::post('add', [WareHouseController::class, 'store']);
@@ -96,6 +101,7 @@ Route::middleware(['auth'])->group(function () {
 
             Route::prefix('supplier')->group(function () {
                 Route::get('list', [SupplierController::class, 'index']);
+                Route::post('list', [SupplierController::class, 'search'])->name('searchSupplier');
                 Route::get('add', [SupplierController::class, 'create']);
                 Route::post('add', [SupplierController::class, 'store']);
                 Route::get('edit/{supplier}', [SupplierController::class, 'show']);
@@ -107,6 +113,7 @@ Route::middleware(['auth'])->group(function () {
             Route::post('upload/services', [UploadController::class, 'store']);
 
             Route::get('account/list', [AccountController::class, 'index'])->name('admin.account.list');
+            Route::post('account/list', [AccountController::class, 'search'])->name('searchAccount');
             Route::get('account/edit/{account}', [AccountController::class, 'show']);
             Route::post('account/edit/{account}', [AccountController::class, 'updateAccount']);
             Route::delete('account/destroy', [AccountController::class, 'destroy']);
@@ -115,9 +122,11 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('index', [UserMainController::class, 'index'])->name('home');
+Route::post('index', [UserMainController::class, 'search'])->name('searchHome');
 Route::post('services/load-product', [UserMainController::class, 'loadProduct']);
 
 Route::get('danh-muc/{id}-{slug}', [UserMenuController::class, 'index']);
+Route::post('danh-muc/{id}-{slug}', [UserMenuController::class, 'search'])->name('UserSearchProduct');
 Route::get('san-pham/{id}-{slug}', [DetailProductController::class, 'index']);
 
 Route::post('add', [CartController::class, 'index']);
@@ -130,3 +139,4 @@ Route::post('pay', [paymentsController::class, 'order']);
 Route::post('vnpay_payment', [paymentsController::class, 'order']);
 Route::get ('/vnpay-return', [paymentsController::class, 'VNPayReturn']);
 //Route::post('momo_payment', [paymentsController::class, 'Momo']);
+// Route::get('/search', [SearchController::class, 'search'])->name('search');

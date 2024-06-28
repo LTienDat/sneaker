@@ -14,12 +14,28 @@ class UserMainController extends Controller
         $this->menuService = $menuService;
         $this->product = $product;
     }
-    public function index()
+    public function index(Request $request)
     {
+        $a = auth()->user();
+
+        // Session::put('insex=',$request->fullUrl());
         return view("home",[
             'title'=> 'Sneaker Store',
             'menus' => $this->menuService->show(),
             'products'=> $this->product->get(),
+            'request' => $request
+        ]);
+
+    }
+
+    
+    public function search(Request $request){
+        $products = $this->product->searchProduct($request);
+        return view("home", [
+            'title'=>'Sneaker Store',
+            'menus' => $this->menuService->show(),
+            'products'=>$products,
+            'request' => $request
         ]);
     }
     

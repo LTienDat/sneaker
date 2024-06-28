@@ -1,6 +1,11 @@
 @extends('admin.main')
 
 @section('content')
+<form action="{{ route('searchProductImage') }}" method="post" style="display:flex">
+    @csrf
+    <input type="text" name="query" class="col-md-4 form-control" placeholder="Tìm kiếm" required>
+    <button type="submit"><i class="fas fa-search fa-fw"></i></button>
+</form>
     <table class="table">
         <thead>
             <tr>

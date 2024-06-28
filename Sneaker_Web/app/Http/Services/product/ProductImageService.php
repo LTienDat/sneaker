@@ -52,5 +52,16 @@ class ProductImageService{
         }
         return false;
      }
+
+     public function searchProductImage($request)
+    {
+        $key = $request->input('query');
+
+        // Sử dụng paginate trước khi get() để lấy dữ liệu đã phân trang
+        return ProductImage::whereHas('product', function ($query) use ($key) {
+            $query->where('name', 'like', '%' . $key . '%');
+        })
+        ->paginate(15); // Phân trang với mỗi trang 15 sản phẩm ảnh
+    }
 }
 ?>

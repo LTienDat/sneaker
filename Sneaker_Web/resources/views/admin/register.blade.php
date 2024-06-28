@@ -48,7 +48,7 @@
                     </div>
                     <div class="row">
                         <div class="col-6">
-                            <button class="btn btn-primary btn-block"><a href="/admin/login">Đăng
+                            <button class="btn btn-primary btn-block"><a href="login">Đăng
                                     nhập</a></button>
                         </div>
                         <!-- /.col -->

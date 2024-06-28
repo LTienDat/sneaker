@@ -24,6 +24,15 @@ class SupplierController extends Controller
         ]);
     }
 
+    
+    public function search(Request $request){
+        $suppliers = $this->supplier->searchSupplier($request);
+
+        return view("admin.supplier.listSupplier", [
+            'title'=>'Danh sách sản phẩm',
+            'suppliers'=>$suppliers
+        ]);
+    }
     public function create(){
        return view('admin.supplier.addSupplier',[
             'title'=> 'Thêm nhà cung cấp'

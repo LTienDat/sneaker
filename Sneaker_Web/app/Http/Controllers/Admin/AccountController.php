@@ -21,6 +21,15 @@ class AccountController extends Controller
             'users'=> $this->userService->getAll(),
         ]);
     }
+    
+    public function search(Request $request){
+        $users = $this->userService->searchAccount($request);
+
+        return view("admin.account.list", [
+            'title'=>'Danh sách tài khoản',
+            'users'=>$users
+        ]);
+    }
     public function show($id){
         return view('admin.account.edit',[
             'title' => 'Chỉnh sửa tài khoản',

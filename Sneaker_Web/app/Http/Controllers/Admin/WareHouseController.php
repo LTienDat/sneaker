@@ -22,9 +22,19 @@ class WareHouseController extends Controller
     {
         $warehouses = $this->warehouseService->getAll();
         return view("admin.warehouse.list", [
-            "title" => 'Kho hàng',
+            "title" => 'Danh sách Kho hàng',
             "warehouses" => $warehouses
 
+        ]);
+    }
+
+    
+    public function search(Request $request){
+        $warehouses = $this->warehouseService->searchWarehouse($request);
+
+        return view("admin.warehouse.list", [
+            'title'=>'Danh sách Kho hàng',
+            'warehouses'=>$warehouses
         ]);
     }
 

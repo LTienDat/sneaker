@@ -79,5 +79,26 @@ class MenuService {
 
         return $query->orderByDesc('id')->paginate(12)->appends($request->except('page'));
     }
+
+    public function searchMenu($request)
+    {
+        $key = $request->input('query');
+
+        // Sử dụng paginate trước khi get() để lấy dữ liệu đã phân trang
+        return Menu::where(function ($query) use ($key) {
+            $query->where('name', 'like', '%' . $key . '%')
+                ->orWhere('id', $key);
+        })->paginate(15); // Phân trang với mỗi trang 15 sản phẩm
+    }
+    public function searchProduct($menu ,$request)
+    {
+        $key = $request->input('search');
+
+        // Sử dụng paginate trước khi get() để lấy dữ liệu đã phân trang
+        return Product::where(function ($query) use ($key) {
+            $query->where('name', 'like', '%' . $key . '%')
+                ->orWhere('price', $key);
+        })->paginate(15); // Phân trang với mỗi trang 15 sản phẩm
+    }
 }
 ?>

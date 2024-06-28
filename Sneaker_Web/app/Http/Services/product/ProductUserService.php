@@ -36,4 +36,15 @@ class ProductUserService
     public function showImage($id){
         return ProductImage::where('product_id', $id)->get();
     }
+
+    public function searchProduct($request)
+    {
+        $key = $request->input('search');
+
+        // Sử dụng paginate trước khi get() để lấy dữ liệu đã phân trang
+        return Product::where(function ($query) use ($key) {
+            $query->where('name', 'like', '%' . $key . '%')
+                ->orWhere('price', $key);
+        })->paginate(15); // Phân trang với mỗi trang 15 sản phẩm
+    }
 }
