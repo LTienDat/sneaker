@@ -12,9 +12,11 @@ use App\Http\Controllers\Admin\UploadController;
 use App\Http\Controllers\Admin\WareHouseController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\DetailProductController;
+use App\Http\Controllers\Forgotcontroller;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\paymentsController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserMainController;
@@ -38,8 +40,14 @@ use App\Http\Middleware\Authenticate;
 
 Route::get('login', [LoginController::class, 'index'])->name('login');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-Route::get('admin/register', [RegisterController::class, 'index']);
-Route::post('admin/register', [RegisterController::class, 'create']);
+Route::get('/register', [RegisterController::class, 'index']);
+Route::post('/register', [RegisterController::class, 'create']);
+Route::get('/forgot', [Forgotcontroller::class, 'index']);
+Route::get('/resetPassword', [Forgotcontroller::class, 'resetPassword']);
+Route::post('/resetPassword', [Forgotcontroller::class, 'update']);
+
+Route::get('/changePassword', [Forgotcontroller::class, 'changePassword']);
+Route::post('/changePassword', [Forgotcontroller::class, 'updateChangePassword']);
 
 Route::post('login', [LoginController::class, 'store']);
 
@@ -52,10 +60,10 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/customer', [OrderListController::class, 'index']);
             Route::post('/customer', [OrderListController::class, 'search'])->name('searchOrder');
             Route::get('/customer/view/{customer}', [OrderListController::class, 'show']);
+            Route::post('/update-status', [OrderListController::class, 'updateStatus'])->name('update.status');
+
             Route::post('/filterByDate', [MainController::class, 'filterByDate'])->name('filterByDate');
 
-
-        
 
             Route::prefix('menus')->group(function () {
                 Route::get('add', [MenuController::class, 'create']);
@@ -140,3 +148,8 @@ Route::post('vnpay_payment', [paymentsController::class, 'order']);
 Route::get ('/vnpay-return', [paymentsController::class, 'VNPayReturn']);
 //Route::post('momo_payment', [paymentsController::class, 'Momo']);
 // Route::get('/search', [SearchController::class, 'search'])->name('search');
+
+Route::get('/profileUser/profile', [ProfileController::class, 'showProfile']);
+Route::post('/profileUser/profile', [ProfileController::class, 'store']);
+Route::get('/profileUser/order', [ProfileController::class, 'order']);
+Route::post('/upload/services', [UploadController::class, 'store']);

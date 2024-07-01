@@ -97,7 +97,7 @@
     margin: 12px 0;
 }
 .sub-user-link p{
-    width: 100px;
+    width: 150px;
 }
 .sub-user-link img{
     width: 45px;
@@ -117,5 +117,31 @@
 .sub-user-link:hover p{
     font-weight: 600;
 }
+.sub-user-link input{
+    background: none;
+}
+.sub-user-link:hover input{
+    font-weight: 600;
+    cursor: pointer;
+}
 
 
+.card-profile{
+    width: 40%;
+    margin-left: 30%;
+}
+
+.profile-img{
+    width: 80px;
+    border-radius: 50%;
+    border: 1px solid black
+}
+
+.change-password{
+    color: white;
+    padding: 5px 0px;
+}
+.profile-order{
+    width: 70%;
+    margin-left: 15%;
+}

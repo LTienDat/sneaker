@@ -4,6 +4,7 @@ namespace App\Http\Services;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
 class UserService
@@ -50,7 +51,7 @@ class UserService
 
     public function getShow($id)
     {
-        return User::find($id);;
+        return User::find($id);
     }
     public function delete($request)
     {
@@ -73,4 +74,6 @@ class UserService
                 ->orWhere('level', $key);
         })->paginate(15); // Phân trang với mỗi trang 15 sản phẩm
     }
+
+
 }

@@ -1,101 +1,102 @@
 <!-- Footer -->
 <footer class="bg3 p-t-75 p-b-32">
 	@php
-   		$menusHtml = \App\Helpers\Helper::menus($menus, $parent_id = 0);
-    @endphp
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">
-						Danh mục
-					</h4>
+		$menusHtml = \App\Helpers\Helper::menus($menus, $parent_id = 0);
+	@endphp
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6 col-lg-3 p-b-50">
+				<h4 class="stext-301 cl0 p-b-30">
+					Danh mục
+				</h4>
 
-					<ul class="footer">
-						<li class="active-menu">
-                            <a href="/index">Trang chủ</a>
-                        </li>
-                        {!!$menusHtml!!}
-					</ul>
-				</div>
+				<ul class="footer">
+					<li class="active-menu">
+						<a href="/index">Trang chủ</a>
+					</li>
+					{!!$menusHtml!!}
+				</ul>
+			</div>
 
-				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">
-						Help
-					</h4>
+			<div class="col-sm-6 col-lg-3 p-b-50">
+				<h4 class="stext-301 cl0 p-b-30">
+					Help
+				</h4>
 
-					<ul>
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Track Order
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Returns 
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Shipping
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								FAQs
-							</a>
-						</li>
-					</ul>
-				</div>
-
-				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">
-						Địa chỉ
-					</h4>
-
-					<p class="stext-107 cl7 size-201">
-						175 Tây Sơn - Đống Đa - Hà Nội
-					</p>
-
-					<div class="p-t-27">
-						<a href="https://www.facebook.com/onlinesneakerstore" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-facebook"></i>
+				<ul>
+					<li class="p-b-10">
+						<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							Track Order
 						</a>
+					</li>
 
-						<a href="https://www.instagram.com/oss.com.vn/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-instagram"></i>
+					<li class="p-b-10">
+						<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							Returns
 						</a>
+					</li>
 
-						<a href="https://www.instagram.com/oss.com.vn/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-pinterest-p"></i>
+					<li class="p-b-10">
+						<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							Shipping
 						</a>
-					</div>
-				</div>
+					</li>
 
-				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">
-						Newsletter
-					</h4>
+					<li class="p-b-10">
+						<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							FAQs
+						</a>
+					</li>
+				</ul>
+			</div>
 
-					<form>
-						<div class="wrap-input1 w-full p-b-4">
-							<input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@example.com">
-							<div class="focus-input1 trans-04"></div>
-						</div>
+			<div class="col-sm-6 col-lg-3 p-b-50">
+				<h4 class="stext-301 cl0 p-b-30">
+					Địa chỉ
+				</h4>
 
-						<div class="p-t-18">
-							<button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
-								Subscribe
-							</button>
-						</div>
-					</form>
+				<p class="stext-107 cl7 size-201">
+					175 Tây Sơn - Đống Đa - Hà Nội
+				</p>
+
+				<div class="p-t-27">
+					<a href="https://www.facebook.com/onlinesneakerstore" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+						<i class="fa fa-facebook"></i>
+					</a>
+
+					<a href="https://www.instagram.com/oss.com.vn/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+						<i class="fa fa-instagram"></i>
+					</a>
+
+					<a href="https://www.instagram.com/oss.com.vn/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+						<i class="fa fa-pinterest-p"></i>
+					</a>
 				</div>
 			</div>
 
-			<div class="p-t-40">
-				<!-- <div class="flex-c-m flex-w p-b-18">
+			<div class="col-sm-6 col-lg-3 p-b-50">
+				<h4 class="stext-301 cl0 p-b-30">
+					Newsletter
+				</h4>
+
+				<form>
+					<div class="wrap-input1 w-full p-b-4">
+						<input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email"
+							placeholder="email@example.com">
+						<div class="focus-input1 trans-04"></div>
+					</div>
+
+					<div class="p-t-18">
+						<button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
+							Subscribe
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div class="p-t-40">
+			<!-- <div class="flex-c-m flex-w p-b-18">
 					<a href="#" class="m-all-1">
 						<img src="/Template//template/images/icons/icon-pay-01.png" alt="ICON-PAY">
 					</a>
@@ -117,35 +118,39 @@
 					</a>
 				</div> -->
 
-				<p class="stext-107 cl6 txt-center">
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> &amp; distributed by <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+			<p class="stext-107 cl6 txt-center">
+				<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+				Copyright &copy;
+				<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i
+					class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
+					target="_blank">Colorlib</a> &amp; distributed by <a href="https://themewagon.com"
+					target="_blank">ThemeWagon</a>
+				<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
-				</p>
-			</div>
+			</p>
 		</div>
-	</footer>
-
-
-	<!-- Back to top -->
-	<div class="btn-back-to-top" id="myBtn">
-		<span class="symbol-btn-back-to-top">
-			<i class="zmdi zmdi-chevron-up"></i>
-		</span>
 	</div>
+</footer>
 
 
-	<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
-		<div class="overlay-modal1 js-hide-modal1"></div>
+<!-- Back to top -->
+<div class="btn-back-to-top" id="myBtn">
+	<span class="symbol-btn-back-to-top">
+		<i class="zmdi zmdi-chevron-up"></i>
+	</span>
+</div>
 
-		<div class="container">
-			<div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
-				<button class="how-pos3 hov3 trans-04 js-hide-modal1">
-					<img src="/template/images/icons/icon-close.png" alt="CLOSE">
-				</button>
 
-				<!-- <div class="row">
+<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
+	<div class="overlay-modal1 js-hide-modal1"></div>
+
+	<div class="container">
+		<div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
+			<button class="how-pos3 hov3 trans-04 js-hide-modal1">
+				<img src="/template/images/icons/icon-close.png" alt="CLOSE">
+			</button>
+
+			<!-- <div class="row">
 					<div class="col-md-6 col-lg-7 p-b-30">
 						<div class="p-l-25 p-r-30 p-lr-0-lg">
 							<div class="wrap-slick3 flex-sb flex-w">
@@ -285,88 +290,115 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 						</div>
 					</div>
 				</div> -->
-			</div>
 		</div>
 	</div>
+</div>
 
-<!--===============================================================================================-->	
-	<script src="/Template/vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="/Template/vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
-	<script src="/Template/vendor/bootstrap/js/popper.js"></script>
-	<script src="/Template/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-	<script src="/Template/vendor/select2/select2.min.js"></script>
-	<script>
-		$(".js-select2").each(function(){
-			$(this).select2({
-				minimumResultsForSearch: 20,
-				dropdownParent: $(this).next('.dropDownSelect2')
-			});
-		})
-	</script>
-<!--===============================================================================================-->
-	<script src="/Template/vendor/daterangepicker/moment.min.js"></script>
-	<script src="/Template/vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-	<script src="/Template/vendor/slick/slick.min.js"></script>
-	<script src="/Template/js/slick-custom.js"></script>
-<!--===============================================================================================-->
-	<script src="/Template/vendor/parallax100/parallax100.js"></script>
-	<script>
-        $('.parallax100').parallax100();
-	</script>
-<!--===============================================================================================-->
-	<script src="/Template/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
-	<script>
-		$('.gallery-lb').each(function() { // the containers for all your galleries
-			$(this).magnificPopup({
-		        delegate: 'a', // the selector for gallery item
-		        type: 'image',
-		        gallery: {
-		        	enabled:true
-		        },
-		        mainClass: 'mfp-fade'
-		    });
+
+<script src="/Template/vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="/Template/vendor/animsition/js/animsition.min.js"></script>
+<script src="/Template/vendor/bootstrap/js/popper.js"></script>
+<script src="/Template/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<script src="/Template/vendor/select2/select2.min.js"></script>
+<script>
+
+	// function uploadUser() {
+	// 	const form = new FormData();
+	// 	form.append('file', $('#uploadU')[0].files[0]);
+	// 	form.append('userId', currentUser.id); // Sử dụng currentUser.id để lấy ID của người dùng
+    //     $.ajax({
+    //         headers: {
+    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //         },
+    //         processData: false,
+    //         contentType: false,
+    //         type: 'POST',
+    //         dataType: 'JSON',
+    //         data: form,
+    //         url: 'admin/upload/services',
+    //         success: function(result){
+    //             if(result.error === false){
+    //                 $('#image_show').html('<a href="'+ result.url +'" target="_blank">'+
+    //                     '<img src="'+ result.url +'" width="100px"></img ></a>')
+    
+    //                 $('#file').val(result.url);
+    //                 console.log(result.url);
+    //             }else{
+    //                 alert('Upload file lỗi');
+    //             }
+    //         },
+	// 	});
+	// }
+
+	$(".js-select2").each(function () {
+		$(this).select2({
+			minimumResultsForSearch: 20,
+			dropdownParent: $(this).next('.dropDownSelect2')
 		});
-	</script>
-<!--===============================================================================================-->
-	<script src="/Template/vendor/isotope/isotope.pkgd.min.js"></script>
-<!--===============================================================================================-->
-	<script src="/Template/vendor/sweetalert/sweetalert.min.js"></script>
-	<script>
-		$('.js-addwish-b2').on('click', function(e){
-			e.preventDefault();
+	})
+</script>
+
+<script src="/Template/vendor/daterangepicker/moment.min.js"></script>
+<script src="/Template/vendor/daterangepicker/daterangepicker.js"></script>
+
+<script src="/Template/vendor/slick/slick.min.js"></script>
+<script src="/Template/js/slick-custom.js"></script>
+
+<script src="/Template/vendor/parallax100/parallax100.js"></script>
+<script>
+	$('.parallax100').parallax100();
+</script>
+
+<script src="/Template/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+<script>
+	$('.gallery-lb').each(function () { // the containers for all your galleries
+		$(this).magnificPopup({
+			delegate: 'a', // the selector for gallery item
+			type: 'image',
+			gallery: {
+				enabled: true
+			},
+			mainClass: 'mfp-fade'
 		});
+	});
+</script>
 
-		$('.js-addwish-b2').each(function(){
-			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
+<script src="/Template/vendor/isotope/isotope.pkgd.min.js"></script>
 
-				$(this).addClass('js-addedwish-b2');
-				$(this).off('click');
-			});
+<script src="/Template/vendor/sweetalert/sweetalert.min.js"></script>
+<script>
+	$('.js-addwish-b2').on('click', function (e) {
+		e.preventDefault();
+	});
+
+	$('.js-addwish-b2').each(function () {
+		var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+		$(this).on('click', function () {
+			swal(nameProduct, "is added to wishlist !", "success");
+
+			$(this).addClass('js-addedwish-b2');
+			$(this).off('click');
 		});
+	});
 
-		// $('.js-addwish-detail').each(function(){
-		// 	var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+	// $('.js-addwish-detail').each(function(){
+	// 	var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
 
-		// 	$(this).on('click', function(){
-		// 		swal(nameProduct, "is added to wishlist !", "success");
+	// 	$(this).on('click', function(){
+	// 		swal(nameProduct, "is added to wishlist !", "success");
 
-		// 		$(this).addClass('js-addedwish-detail');
-		// 		$(this).off('click');
-		// 	});
-		// });
+	// 		$(this).addClass('js-addedwish-detail');
+	// 		$(this).off('click');
+	// 	});
+	// });
 
-		/*---------------------------------------------*/
-	
-	</script>
-<!--===============================================================================================-->
-	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-	<script>
+	/*---------------------------------------------*/
+
+</script>
+
+<!-- <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script> -->
+<!-- <script>
 		$('.js-pscroll').each(function(){
 			$(this).css('position','relative');
 			$(this).css('overflow','hidden');
@@ -380,83 +412,119 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				ps.update();
 			})
 		});
-	</script>
-<!--===============================================================================================-->
-	<script src="/Template/js/main.js"></script>
-	<script src="/Template/js/public.js"></script>
-	<script src="../../Jquery/prettify.js"></script>
+	</script> -->
 
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script>
-$(document).ready(function () {
-    // Bắt sự kiện khi nhấn nút tăng số lượng
-    $('.btn-num-product-up').click(function () {
-        var input = $(this).closest('.wrap-num-product').find('.num-product');
-        var currentValue = parseInt(input.val());
-        var newValue = currentValue; // Tăng số lượng lên 1
-        input.val(newValue);
-        updateCart($(this)); // Cập nhật giỏ hàng khi thay đổi số lượng
-    });
+<script src="/Template/js/main.js"></script>
+<script src="/Template/js/public.js"></script>
+<!-- <script src="../../Jquery/prettify.js"></script> -->
 
-    // Bắt sự kiện khi nhấn nút giảm số lượng
-    $('.btn-num-product-down').click(function () {
-        var input = $(this).closest('.wrap-num-product').find('.num-product');
-        var currentValue = parseInt(input.val());
-        var newValue = currentValue ; // Giảm số lượng đi 1 (nhưng không dưới 1)
-        if (newValue >= 1) {
-            input.val(newValue);
-            updateCart($(this)); // Cập nhật giỏ hàng khi thay đổi số lượng
-        }
-    });
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	$(document).ready(function () {
+		// Bắt sự kiện khi nhấn nút tăng số lượng
+		$('.btn-num-product-up').click(function () {
+			var input = $(this).closest('.wrap-num-product').find('.num-product');
+			var currentValue = parseInt(input.val());
+			var newValue = currentValue; // Tăng số lượng lên 1
+			input.val(newValue);
+			updateCart($(this)); // Cập nhật giỏ hàng khi thay đổi số lượng
+		});
 
-    // Hàm cập nhật giỏ hàng khi thay đổi số lượng
-    function updateCart(btn) {
-        var row = btn.closest('.table_row'); // Lấy hàng (row) chứa nút đã click
-        var price = parseInt(row.find('.column-4').text().replace(/[^0-9.-]+/g, '')); // Lấy giá sản phẩm từ cột giá
-        var quantity = parseInt(row.find('.num-product').val()); // Lấy số lượng sản phẩm từ input số lượng
-        var subtotal = price * quantity; // Tính tổng tiền
+		// Bắt sự kiện khi nhấn nút giảm số lượng
+		$('.btn-num-product-down').click(function () {
+			var input = $(this).closest('.wrap-num-product').find('.num-product');
+			var currentValue = parseInt(input.val());
+			var newValue = currentValue; // Giảm số lượng đi 1 (nhưng không dưới 1)
+			if (newValue >= 1) {
+				input.val(newValue);
+				updateCart($(this)); // Cập nhật giỏ hàng khi thay đổi số lượng
+			}
+		});
 
-        // Hiển thị tổng tiền với 0 chữ số thập phân
-        row.find('.subtotal').text(numberWithCommas(subtotal.toFixed(0)));
-        // Cập nhật lại data-price với giá trị mới
-        row.find('.subtotal').attr('data-price', subtotal.toFixed(0));
-        updateTotal(); // Cập nhật tổng số tiền của giỏ hàng
+		// Hàm cập nhật giỏ hàng khi thay đổi số lượng
+		function updateCart(btn) {
+			var row = btn.closest('.table_row'); // Lấy hàng (row) chứa nút đã click
+			var price = parseInt(row.find('.column-4').text().replace(/[^0-9.-]+/g, '')); // Lấy giá sản phẩm từ cột giá
+			var quantity = parseInt(row.find('.num-product').val()); // Lấy số lượng sản phẩm từ input số lượng
+			var subtotal = price * quantity; // Tính tổng tiền
 
-    } 
+			// Hiển thị tổng tiền với 0 chữ số thập phân
+			row.find('.subtotal').text(numberWithCommas(subtotal.toFixed(0)));
+			// Cập nhật lại data-price với giá trị mới
+			row.find('.subtotal').attr('data-price', subtotal.toFixed(0));
+			updateTotal(); // Cập nhật tổng số tiền của giỏ hàng
 
-    // Hàm tính lại tổng số tiền của giỏ hàng
-    function updateTotal() {
-        var total = 0;
-        $('.subtotal').each(function () {
-            var subtotalValue = parseFloat($(this).attr('data-price'));
-            if (!isNaN(subtotalValue)) {
-                total += subtotalValue;
-            }
-        });
+		}
 
-        // Hiển thị tổng số tiền của giỏ hàng
-        $('.cart-total').text(numberWithCommas(total.toFixed(0)));
-    }
+		// Hàm tính lại tổng số tiền của giỏ hàng
+		function updateTotal() {
+			var total = 0;
+			$('.subtotal').each(function () {
+				var subtotalValue = parseFloat($(this).attr('data-price'));
+				if (!isNaN(subtotalValue)) {
+					total += subtotalValue;
+				}
+			});
 
-    // Hàm định dạng số với dấu phân cách
-    function numberWithCommas(x) {
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-});
+			// Hiển thị tổng số tiền của giỏ hàng
+			$('.cart-total').text(numberWithCommas(total.toFixed(0)));
+		}
+
+		// Hàm định dạng số với dấu phân cách
+		function numberWithCommas(x) {
+			return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
+	});
 
 
 
 
 </script>
 
-    <script>
+<script>
 
-        let subMenu = document.getElementById("subMenu")
+	let subMenu = document.getElementById("subMenu")
 
-        function toggleMenu(){
-            subMenu.classList.toggle("open-menu");
-        }
-    </script>
-
-
-
+	function toggleMenu() {
+		subMenu.classList.toggle("open-menu");
+	}
+	<?php if(auth()->user()){?>
+	
+	var currentUser = {
+        id: {{ auth()->user()->id }},
+        name: '{{ auth()->user()->name }}',
+        email: '{{ auth()->user()->email }}',
+        password: '{{ auth()->user()->password }}',
+        file: '{{ auth()->user()->file }}',
+        // Thêm các trường thông tin khác của người dùng nếu cần thiết
+    };
+	<?php }?>
+	
+	$('#uploadU').change(function(){
+		const form = new FormData();
+		form.append('file', $('#uploadU')[0].files[0]);
+		form.append('userId', currentUser.id); // Sử dụng currentUser.id để lấy ID của người dùng
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            processData: false,
+            contentType: false,
+            type: 'POST',
+            dataType: 'JSON',
+            data: form,
+            url: '/upload/services',
+            success: function(result){
+                if(result.error === false){
+                    $('#image_show').html('<a href="'+ result.url +'" target="_blank">'+
+                        '<img src="'+ result.url +'" width="100px"></img ></a>')
+    
+                    $('#file').val(result.url);
+                    console.log(result.url);
+                }else{
+                    alert('Upload file lỗi');
+                }
+            },
+		});
+	})
+</script>

@@ -54,10 +54,10 @@
       </form>
 
       <div class="social-auth-links text-center mb-3">
-        <a href="/admin/register" class="btn btn-block btn-primary">
+        <a href="/register" class="btn btn-block btn-primary">
           Đăng ký
         </a>
-        <a href="#" class="btn btn-block btn-danger">
+        <a href="/forgot" class="btn btn-block btn-danger">
           Quên mật khẩu
         </a>
       </div>

@@ -38,35 +38,41 @@
                     
                                         <div class="cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti profile">
                         <div class="box">
-                            <img src="{{asset('/Template/images/users.png')}}" alt="" onclick="toggleMenu()">
+                            <img src="{{!empty($users) && isset(auth()->user()->file) ? auth()->user()->file : asset('/Template/images/users.png')}}" alt="" onclick="toggleMenu()">
                         </div>
                         <div class="sub-user-wrap" id="subMenu">
                             <div class="sub-user">
                                 <div class="user-info">
-                                    <img src="{{asset('/Template/images/user.JFIF')}}" alt="">
+                                    <img src="{{!empty($users) && isset(auth()->user()->file) ? auth()->user()->file : asset('/Template/images/users.png')}}" alt="">
                                     <h3>{{!empty($users)? $users->name : ""}}</h3>
                                 </div>
                                 <hr>
                                 <a href="#" class="sub-user-link">
-                                    <img src="{{asset('/Template/images/user.JFIF')}}" alt="">
-                                    <p>Chinh sua</p>
+                                    <img src="{{asset('/Template/images/users.png')}}" alt="">
+                                    <form action="/profileUser/profile" method="get">
+                                        <p><input type="submit" value="Thông tin cá nhân"></p>
+                                    </form>
                                     <span>></span>
                                 </a>
                                 <a href="#" class="sub-user-link">
-                                    <img src="{{asset('/Template/images/user.JFIF')}}" alt="">
-                                    <p>Chinh sua</p>
+                                    <img src="{{asset('/Template/images/icon_changePassword.png')}}" alt="">
+                                    <form action="/forgot" method="get">
+                                        <p><input type="submit" value="Quên mật khẩu"></p>
+                                    </form>
                                     <span>></span>
                                 </a>
                                 <a href="#" class="sub-user-link">
-                                    <img src="{{asset('/Template/images/user.JFIF')}}" alt="">
-                                    <p>Chinh sua</p>
+                                    <img src="{{asset('/Template/images/icon_order.png')}}" alt="">
+                                    <form action="/profileUser/order" method="get">
+                                        <p><input type="submit" value="Đơn hàng"></p>
+                                    </form>
                                     <span>></span>
                                 </a>
                                 <a href="#" class="sub-user-link">
-                                    <img src="{{asset('/Template/images/user.JFIF')}}" alt="">
+                                    <img src="{{!empty($users) ? asset('/Template/images/logout.png') : asset('/Template/images/login.png')}}" alt="">
                                     <form action="{{!empty($users) ? route('logout') : route('login')}}" method="{{!empty($users) ? "post" : "get"}}">
                                         @csrf
-                                        <button type="submit"><p>{{!empty($users) ? "Đăng xuất" : "Đăng nhập"}}</p></button>
+                                        <p><input type="submit" value="{{!empty($users) ? "Đăng xuất" : "Đăng nhập"}}"></p>
                                     </form>
                                     <span>></span>
                                 </a>
@@ -130,6 +136,7 @@
             </button>
             <?php 
             $router = null;
+            if(!empty($request)){
                 if($request->fullUrl() == "http://127.0.0.1:8000/index"){
                     $router = route('searchHome');
                 }elseif($request->segment(1) == "danh-muc"){
@@ -138,6 +145,7 @@
                         $router = route("UserSearchProduct{{$menu->id}}-{{Str::slug($menu->id,'-')}}");
                     }
                 }
+            }
             ?>
 
             <form action="{{ $router!= Null ? $router :  ""}}  " method="post" class="wrap-search-header flex-w p-l-15">

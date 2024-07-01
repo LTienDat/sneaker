@@ -40,4 +40,14 @@ class OrderListController extends Controller
             'carts_customer' => $cart->customer()->with('customer')->get()
         ]);
     }
+
+    public function updateStatus(Request $request){
+
+        $option = $request->input('option');
+        Cart::where('id', 102) // Thay đổi điều kiện lấy dữ liệu theo đúng id của model
+                ->update(['status' => $option]);
+
+
+        return response()->json(['success' => true, 'message' => 'Option updated successfully']);
+    }
 }

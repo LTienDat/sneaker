@@ -35,11 +35,10 @@ function removeRow(id, url){
 // #upload file
 
 $('#upload').change(function(){
-
-
+    console.log(1);
     const form = new FormData();
     form.append('file', $(this)[0].files[0])
-
+    console.log(1);
     $.ajax({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -51,6 +50,7 @@ $('#upload').change(function(){
         data: form,
         url: '/admin/upload/services',
         success: function(result){
+            console.log(2);
             if(result.error === false){
                 $('#image_show').html('<a href="'+ result.url +'" target="_blank">'+
                     '<img src="'+ result.url +'" width="100px"></img ></a>')
@@ -146,6 +146,37 @@ $(document).ready(function(){
         });
     });
 });
+
+
+
+$(document).ready(function() {
+    $('#statusOrder').change(function() {
+        var selectedOption = $(this).val();
+        console.log(1);
+
+        // Gửi yêu cầu Ajax
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "/admin/update-status",
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                option: selectedOption,
+            },
+            success: function(response) {
+                console.log(response.message); // Log thành công
+                // Các hành động khác sau khi cập nhật thành công
+            },
+            error: function(xhr, status, error) {
+                console.error(error); // Log lỗi nếu có
+            }
+        });
+    });
+});
+
+
 
 
 

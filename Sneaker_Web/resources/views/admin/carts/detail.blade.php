@@ -25,6 +25,7 @@
                 <th class="column-3">Số lượng</th>
                 <th class="column-4">Giá</th>
                 <th class="column-4">Phương thức thanh toán</th>
+                <th class="column-4">Trạng thái đơn hàng</th>
                 <th class="column-6"></th>
             </tr>
 
@@ -41,12 +42,20 @@
                 <td class="column-3">{{$cart->quantity}}</td>
                 <td class="column-4">{{number_format($cart->price)}}</td>
                 <td class="column-4">{{$cart->payment == 0 ? "Thanh toán khi nhận hàng" : "Thanh toán VNP"}}</td>
+                <td class="column-4">
+                    <select class="form-control" name="status" id="statusOrder">
+                        <option value="chờ xác nhận">chờ xác nhận</option>
+                        <option value="đã xác nhận">đã xác nhận</option>
+                        <option value="đang vận chuyển">đang vận chuyển</option>
+                        <option value="đã giao hàng">đã giao hàng</option>
+                    </select>
+                </td>
                 <td class="p-r-15"><a href="/carts/delete/{{$cart->quantity}}" class="btn btn-primary btn-sm" ><i class="fas fa-trash"></i></a></td>
             </tr>
             <?php $total += $cart->price * $cart->quantity?>
             @endforeach
             <tr>
-                <td colspan="6" class="text-right">Tổng tiền</td>
+                <td colspan="8" class="text-right">Tổng tiền</td>
                 <td>{{number_format($total)}}</td>
             </tr>
         </tbody>
