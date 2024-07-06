@@ -7,7 +7,6 @@
         <div class="register-logo">
             <a href="../../index2.html"><b>Admin</b>LTE</a>
         </div>
-
         <div class="card">
             <div class="card-body register-card-body">
                 <p class="login-box-msg">Đăng ký tài khoản</p>

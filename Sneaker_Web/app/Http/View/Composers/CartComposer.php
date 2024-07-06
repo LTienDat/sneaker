@@ -26,7 +26,15 @@ class CartComposer{
             
         }
         $products = Product::select('id', 'name', 'price', 'price_sale', 'file')
+<<<<<<< Updated upstream
         ->where('active', 1)->whereIn('id', $keyProductId)->get();
+=======
+            ->where('active', 1)->whereIn('id', $productId)->get();
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
         $view->with('productCart', $products);
+=======
+        $view->with('productCart', $product);
+>>>>>>> Stashed changes
     }
 }

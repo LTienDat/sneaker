@@ -13,7 +13,7 @@
         </div>
         <?php 
 				
-				$total = 0;
+				$total = 0; 
 			?>
         <div class="header-cart-content flex-w js-pscroll">
             <ul class="header-cart-wrapitem w-full">
