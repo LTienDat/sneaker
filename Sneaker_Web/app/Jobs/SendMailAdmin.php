@@ -33,7 +33,7 @@ class SendMailAdmin implements ShouldQueue
      */
     public function handle()
     {
-        \Log::info("Email in handle method: " . $this->email); // Log để kiểm tra
+        Log::info("Email in handle method: " . $this->email); // Log để kiểm tra
 
         Mail::to($this->email)->send(new Order());
     }

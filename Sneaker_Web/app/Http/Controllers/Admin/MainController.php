@@ -30,6 +30,7 @@ public function filterByDate(Request $request){
     $from_date = $request->input('form_date');
     $to_date = $request->input('to_date');
     
+    
     $statistics = Statistacal::whereBetween('orderDate', [$from_date, $to_date])
         ->orderBy('orderDate', 'ASC')
         ->get();
