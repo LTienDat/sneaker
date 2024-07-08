@@ -60,7 +60,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/customer', [OrderListController::class, 'index']);
             Route::post('/customer', [OrderListController::class, 'search'])->name('searchOrder');
             Route::get('/customer/view/{customer}', [OrderListController::class, 'show']);
-            Route::post('/update-status', [OrderListController::class, 'updateStatus'])->name('update.status');
+            Route::post('/update-status/{cartId}', [OrderListController::class, 'updateStatus'])->name('update.status');
 
             Route::post('/filterByDate', [MainController::class, 'filterByDate'])->name('filterByDate');
 

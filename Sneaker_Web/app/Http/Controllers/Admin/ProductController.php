@@ -17,7 +17,6 @@ class ProductController extends Controller
 
     public function index()
     {
-        
         return view("admin.product.list", [
             'title'=>'Danh sách sản phẩm',
             'products'=>$this->productService->get(),
@@ -40,24 +39,13 @@ class ProductController extends Controller
             'menus'=> $this->productService->getMenu()
         ]);
     }
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(ProductRequest $request ){
         $this->productService->insert($request);
         return redirect()->back();
      }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Product $product)
     {
         return view('admin.product.edit',[
@@ -67,24 +55,7 @@ class ProductController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Product $product)
     {
         $result = $this->productService->update($request, $product);
@@ -94,12 +65,7 @@ class ProductController extends Controller
         return redirect()->back();  
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Request $request)
     {
         $result = $this->productService->delete($request);

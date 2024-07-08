@@ -1,5 +1,3 @@
-
-
 function removeRow(id, url){
     if (confirm('Bạn có chắc chắn muốn xóa nội dung này không?')) {
         $.ajax({
@@ -152,21 +150,23 @@ $(document).ready(function(){
 $(document).ready(function() {
     $('#statusOrder').change(function() {
         var selectedOption = $(this).val();
-        console.log(1);
-
+        console.log(selectedOption);
+        var cartId = $('#cartId').val();
+        
         // Gửi yêu cầu Ajax
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: "/admin/update-status",
+            url: "/admin/update-status/" + cartId,
             type: 'POST',
             dataType: 'json',
             data: {
                 option: selectedOption,
             },
             success: function(response) {
-                console.log(response.message); // Log thành công
+                toSafeInteger.success("cập nhật trạng thái đơn hàng thành công") // Log thành công
+                console.log(response.message);
                 // Các hành động khác sau khi cập nhật thành công
             },
             error: function(xhr, status, error) {

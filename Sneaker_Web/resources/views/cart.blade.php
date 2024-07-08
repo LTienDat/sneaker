@@ -17,7 +17,7 @@
 			?>
         <div class="header-cart-content flex-w js-pscroll">
             <ul class="header-cart-wrapitem w-full">
-               @if(isset($productCart) && !is_null($productCart))
+                @if(isset($productCart) && !is_null($productCart))
                 @foreach( $productCart as $product )
                 <li class="header-cart-item flex-w flex-t m-b-12">
                     <div class="header-cart-item-img">

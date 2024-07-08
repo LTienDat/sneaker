@@ -5,7 +5,7 @@
 		<div class="wrap-slick1">
 			<div class="slick1">
 				<div class="item-slick1" style="background-image: url(/Template/images/adidas_baner.jpg);">
-					<div class="container h-full">
+					<!-- <div class="container h-full">
 						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
 								<span class="ltext-101 cl2 respon2">
@@ -25,11 +25,11 @@
 								</a>
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</div>
 
 				<div class="item-slick1" style="background-image: url(/Template/images/nike_baner.jpg);">
-					<div class="container h-full">
+					<!-- <div class="container h-full">
 						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="rollIn" data-delay="0">
 								<span class="ltext-101 cl2 respon2">
@@ -49,11 +49,11 @@
 								</a>
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</div>
 
 				<div class="item-slick1" style="background-image: url(/Template/images/mlb_baner.png);">
-					<div class="container h-full">
+					<!-- <div class="container h-full">
 						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="rotateInDownLeft" data-delay="0">
 								<span class="ltext-101 cl2 respon2">
@@ -73,7 +73,7 @@
 								</a>
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>

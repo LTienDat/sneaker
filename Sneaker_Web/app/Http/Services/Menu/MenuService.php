@@ -66,7 +66,10 @@ class MenuService {
     }
 
     public function getId($id){
-        return Menu::where('id', $id)->where("active", 1)->firstOrFail();
+        // Menu::where(function($query) use ($id){
+        //     $query->where('id', $id)->orWhere('parent_id', $id)->
+        // });
+        return Menu::where('id', $id)->orwhere('parent_id', $id)->where("active", 1)->firstOrFail();
     }
 
     public function getProduct($menu, $request){

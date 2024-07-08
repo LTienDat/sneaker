@@ -41,12 +41,17 @@ class OrderListController extends Controller
         ]);
     }
 
-    public function updateStatus(Request $request){
+    public function updateStatus(Request $request, $id){
 
         $option = $request->input('option');
-        Cart::where('id', 102) // Thay đổi điều kiện lấy dữ liệu theo đúng id của model
+        $cart = Cart::where('id', $id) // Thay đổi điều kiện lấy dữ liệu theo đúng id của model
                 ->update(['status' => $option]);
+        if($cart == 1){
+            echo "<script>alert('Cập nhật trạng thái đơn hàng thành công')</script>";
+        }else{
+            echo "<script>alert('Cập nhật trạng thái đơn hàng thất bại, vui lòng thử lại sau')</script>";
 
+        }
 
         return response()->json(['success' => true, 'message' => 'Option updated successfully']);
     }

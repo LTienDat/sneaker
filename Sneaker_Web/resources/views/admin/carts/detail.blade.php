@@ -30,6 +30,7 @@
             </tr>
 
             @foreach ($carts as $cart)
+            <input type="hidden" id="cartId" value="{{$cart->id}}">
             <tr class="table_row">
                 <td class="column-1">{{$cart->product->name}}</td> 
                 <td class="column-2">
@@ -44,6 +45,8 @@
                 <td class="column-4">{{$cart->payment == 0 ? "Thanh toán khi nhận hàng" : "Thanh toán VNP"}}</td>
                 <td class="column-4">
                     <select class="form-control" name="status" id="statusOrder">
+                        <option value="">{{$cart->status}}</option>
+                        <hr>
                         <option value="chờ xác nhận">chờ xác nhận</option>
                         <option value="đã xác nhận">đã xác nhận</option>
                         <option value="đang vận chuyển">đang vận chuyển</option>
