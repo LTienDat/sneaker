@@ -93,49 +93,31 @@ function updateCart(event) {
 $(document).ready(function(){
     var Chart = new Morris.Bar({
         element: 'myfirstchart',
-        data: [
-          { team: 'Brazil', nb: 5 },
-          { team: 'Italy', nb: 4 },
-          { team: 'Germany', nb: 4 },
-          { team: 'Uruguay', nb: 2 },
-          { team: 'Argentina', nb: 2 }
-        ],
-        xkey: 'team',
-        ykeys: ['nb'],
-        labels: ['Đơn hàng', 'Doanh số', 'Lợi nhuận', 'Số lượng']
+        xkey: 'orderDate',
+        ykeys: ['order', 'sales', 'profit', 'quantity'],
+        labels: ['Đơn hàng', 'Doanh số', 'Lợi nhuận', 'Số lượng'],
+        barColors: ['#819C79', '#fc8710', '#A4ADD3', '#766B57'],
+        hideHover: 'auto',
+        parseTime: false
       });
-
-
-    // var Chart = new Morris.Bar({
-    //     element: 'myfirstchart',
-    //     barColors: ['#819C79', '#fc8710', '#A4ADD3', '#766B57'], // Corrected property name and color definition
-
-    //     pointFillColors: ['#ffffff'],
-    //     pointStrokeColors: ['black'],
-    //     fillOpacity: 0.6,
-    //     hideHover: 'auto',
-    //     parseTime: false,
-    //     xkey: 'period',
-    //     behaveLikeLine: true, // Corrected property name
-    //     labels: ['Đơn hàng', 'Doanh số', 'Lợi nhuận', 'Số lượng'] // Corrected property name
-    // });
 
     $('#btn-dashboard-filter').click(function(){
         var _token = $('input[name="_token"]').val();
         var form_date = $('#datepicker').val();
         var to_date = $('#datepicker2').val();
+
         $.ajax({
             
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: "filterByDate", // Corrected to use route() helper function
+            url: "filterByDate", // Sử dụng route() helper function trong Laravel để đảm bảo URL chính xác
             method: "POST",
             dataType: "json",
             data: {form_date: form_date, to_date: to_date, _token: _token},
             success: function(data){
-
                 Chart.setData(data);
+
             },
             error: function(xhr, status, error) {
                 console.log(url);

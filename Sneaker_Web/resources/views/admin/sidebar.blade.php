@@ -3,21 +3,20 @@
     <a href="/admin/index3.html" class="brand-link">
         <img src="/template/admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
             class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
+        <span class="brand-text font-weight-light">AdminL</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <!-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
                 <img src="/template/admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
                 <a href="/admin/main" class="d-block">Alexander Pierce</a>
             </div>
-        </div>
-
+        </div> -->
         <!-- SidebarSearch Form -->
         <div class="form-inline">
             <div class="input-group" data-widget="sidebar-search">
@@ -37,7 +36,7 @@
                with font-awesome or any other icon font library -->
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="fas fa-bars mr-2"></i>
+                        <i class="fas fa-layer-group mr-2"></i>
                         <p>
                             Danh mục
                             <i class="right fas fa-angle-left"></i>
@@ -62,7 +61,7 @@
 
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="fas fa-bars mr-2"></i>
+                        <i class="fas fa-shoe-prints mr-2"></i>
                         <p>
                             Sản phẩm
                             <i class="right fas fa-angle-left"></i>
@@ -92,7 +91,7 @@
 
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="fas fa-bars mr-2"></i>
+                        <i class="fas fa-image mr-2"></i>
                         <p>
                             Ảnh chi tiết sản phẩm
                             <i class="right fas fa-angle-left"></i>
@@ -117,7 +116,7 @@
 
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="fas fa-bars mr-2"></i>
+                        <i class="fas fa-box mr-2"></i>
                         <p>
                             Đơn hàng
                             <i class="right fas fa-angle-left"></i>
@@ -141,7 +140,7 @@
 
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="fas fa-bars mr-2"></i>
+                        <i class="fas fa-user mr-2"></i>
                         <p>
                             Tài khoản
                             <i class="right fas fa-angle-left"></i>
@@ -159,7 +158,7 @@
 
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="fas fa-bars mr-2"></i>
+                        <i class="fas fa-warehouse mr-2"></i>
                         <p>
                             Kho hàng
                             <i class="right fas fa-angle-left"></i>
@@ -184,7 +183,7 @@
 
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="fas fa-bars mr-2"></i>
+                        <i class="fas fa-user mr-2"></i>
                         <p>
                             Nhà cung cấp
                             <i class="right fas fa-angle-left"></i>
@@ -204,13 +203,14 @@
                             </a>
                         </li>
                     </ul>
+                    
                 </li>
 
 
-                <li class="nav-item">
-                    <form action="{{ route('logout') }}" method="POST">
+                <li class="nav-item m-l-30">
+                    <form style="margin-left:30px" action="{{ route('logout') }}" method="POST">
                         @csrf
-                        <button type="submit">Đăng xuất</button>
+                        <button style="background-color: seashell" type="submit">Đăng xuất</button>
                     </form>
                 </li>
 

@@ -148,7 +148,7 @@
                                 </div>
                                 <button
                                     class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-                                    Add to cart
+                                    Thêm vào giỏ hàng
                                 </button>
                                 <input type="hidden" name="product_id" value="{{$products->id}}">
                                 @endif
@@ -314,15 +314,7 @@
                                     </div>
 
                                     <!-- Add review -->
-                                    <form class="w-full">
-                                        <h5 class="mtext-108 cl2 p-b-7">
-                                            Add a review
-                                        </h5>
-
-                                        <p class="stext-102 cl6">
-                                            Your email address will not be published. Required fields are marked *
-                                        </p>
-
+                                    <form method="post" action="{{route('reviewProduct')}}" class="w-full">
                                         <div class="flex-w flex-m p-t-50 p-b-23">
                                             <span class="stext-102 cl3 m-r-16">
                                                 Your Rating
@@ -334,7 +326,7 @@
                                                 <i class="item-rating pointer zmdi zmdi-star-outline"></i>
                                                 <i class="item-rating pointer zmdi zmdi-star-outline"></i>
                                                 <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                <input class="dis-none" type="number" name="rating">
+                                                <input class="dis-none" type="number" name="star">
                                             </span>
                                         </div>
 
@@ -345,7 +337,7 @@
                                                     id="review" name="review"></textarea>
                                             </div>
 
-                                            <div class="col-sm-6 p-b-5">
+                                            <!-- <div class="col-sm-6 p-b-5">
                                                 <label class="stext-102 cl3" for="name">Name</label>
                                                 <input class="size-111 bor8 stext-102 cl2 p-lr-20" id="name" type="text"
                                                     name="name">
@@ -355,13 +347,14 @@
                                                 <label class="stext-102 cl3" for="email">Email</label>
                                                 <input class="size-111 bor8 stext-102 cl2 p-lr-20" id="email"
                                                     type="text" name="email">
-                                            </div>
+                                            </div> -->
                                         </div>
 
-                                        <button
+                                        <button type="submit"
                                             class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
                                             Submit
                                         </button>
+                                        @csrf
                                     </form>
                                 </div>
                             </div>

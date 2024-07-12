@@ -43,4 +43,7 @@ class Product extends Model
     public function productImage(){
         return $this->hasMany(ProductImage::class,'product_id', 'id');
     }
+    public function reviewProduct(){
+        return $this->belongsToMany(Review_Product::class, 'reviewproduct__products', 'reviewProduct_id', 'products_id');
+    }
 }

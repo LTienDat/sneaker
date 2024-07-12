@@ -9,7 +9,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th style="width:50px">ID Đơn hàng:</th>
+                <!-- <th style="width:50px">ID Đơn hàng:</th> -->
                 <th style="width:50px">ID:</th>
                 <th>Tên Khách hàng</th>
                 <th>Số điện thoại</th>
@@ -22,11 +22,7 @@
             @foreach ( $customers as $key => $customer )
             <tr>
                 
-                <td><?php 
-                    foreach($customer->carts as $key => $value){
-                        echo $value->id;
-                    }
-                ?></td>
+  
                 <td>{{$customer->id}}</td>
                 <td>{{$customer->name}}</td>
                 <td>{{$customer->phone}}</td>

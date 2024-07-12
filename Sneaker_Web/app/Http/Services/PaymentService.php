@@ -11,6 +11,7 @@ use App\Models\Customer;
 use App\Models\InfoCustomTemporary;
 use App\Models\Payment;
 use App\Models\Product;
+use App\Models\Statistacal;
 use App\Models\WareHouse;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -90,9 +91,9 @@ class PaymentService
 
         // Chuẩn bị mảng dữ liệu để chèn vào cơ sở dữ liệu
         $data = [];
+        $data2 = [];
         foreach ($products as $product) {
             foreach($productIds as $productId){
-                
             // Kiểm tra xem ID sản phẩm hiện tại có tồn tại trong $carts không
             if (isset($carts[$productId]) && $product->id == intval(subStr(strval($productId), 0, -2))) {
                 $data[] = [
@@ -105,16 +106,26 @@ class PaymentService
                     'price' => Helper::price($product->price, $product->price_sale) + 30000,
                     'created_at' => Carbon::now()
                 ];
+                
+                $warehouses = Warehouse::where('product_id', $product->id)->where('size', $carts[$productId]['size'])->first();   
+                $warehouses->quantity -= $carts[$productId]['num_product'];
+                $warehouses->save();
+                $data2 = [
+                    'quantity' => $carts[$productId]['num_product'],
+                    'total_order' => '1',
+                    'sales' => Helper::price($product->price, $product->price_sale),
+                    'orderDate' => Carbon::now()->format('Y-m-d'),
+                    'profit' => Helper::price($product->price, $product->price_sale)*$carts[$productId]['num_product'] - $warehouses->import_price*$carts[$productId]['num_product'], 
+                ];
+                Statistacal::create($data2);
             }
-            $warehouses = Warehouse::where('product_id', $product->id)->where('size', $carts[$productId]['size'])->first();   
-            $warehouses->quantity -= $carts[$productId]['num_product'];
-            $warehouses->save();
         }
         }
 
 
         // Truy xuất tất cả các bản ghi Warehouse tương ứng với danh sách sản phẩm
         // Chèn dữ liệu vào cơ sở dữ liệu sử dụng model Cart
+
         return Cart::insert($data); 
         
     }

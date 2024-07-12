@@ -5,6 +5,7 @@ namespace App\Http\Services\Product;
 use App\Models\Product;
 use App\Models\ProductAttribute;
 use App\Models\ProductImage;
+use App\Models\Review_Product;
 use App\Models\WareHouse;
 
 class ProductUserService
@@ -35,6 +36,10 @@ class ProductUserService
 
     public function showImage($id){
         return ProductImage::where('product_id', $id)->get();
+    }
+    public function showReview($id){
+        $product = Product::find($id);
+        return $product->reviewProduct()->get();
     }
 
     public function searchProduct($request)

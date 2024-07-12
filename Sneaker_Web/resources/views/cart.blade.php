@@ -48,11 +48,7 @@
                 <div class="header-cart-buttons flex-w w-full">
                     <a href="/carts"
                         class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-                        View Cart
-                    </a>
-
-                    <a href="/carts" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-                        Check Out
+                       Xem giỏ hàng
                     </a>
                 </div>
             </div>

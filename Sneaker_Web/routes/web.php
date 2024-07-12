@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\paymentsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ReviewProductController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserMainController;
 use App\Http\Controllers\UserMenuController;
@@ -117,6 +118,8 @@ Route::middleware(['auth'])->group(function () {
                 Route::delete('destroy', [SupplierController::class, 'destroy']);
             });
 
+            Route::post('detail', []);
+
             #upload
             Route::post('upload/services', [UploadController::class, 'store']);
 
@@ -127,6 +130,8 @@ Route::middleware(['auth'])->group(function () {
             Route::delete('account/destroy', [AccountController::class, 'destroy']);
         });
     });
+
+    Route::post('detail', [ReviewProductController::class, 'store'])->name('reviewProduct');
 });
 
 Route::get('index', [UserMainController::class, 'index'])->name('home');

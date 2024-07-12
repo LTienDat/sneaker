@@ -16,6 +16,8 @@ class DetailProductController extends Controller
         $product = $this->productService->show($id);
         $productAttributes = $this->productService->showAttribute($id);
         $productImage = $this->productService->showImage($id);
+        $review = $this->productService->showReview($id);
+        dd($review);
         return view('products.detail',[
             'title'=> $product->name,
             'products' => $product,

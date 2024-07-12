@@ -233,14 +233,17 @@
         $(input).val(0);
 
         $(item).on('mouseenter', function(){
+            console.log(1);
             var index = item.index(this);
             var i = 0;
             for(i=0; i<=index; i++) {
+                console.log(2);
                 $(item[i]).removeClass('zmdi-star-outline');
                 $(item[i]).addClass('zmdi-star');
             }
 
             for(var j=i; j<item.length; j++) {
+                console.log(3);
                 $(item[j]).addClass('zmdi-star-outline');
                 $(item[j]).removeClass('zmdi-star');
             }
@@ -250,20 +253,25 @@
             var index = item.index(this);
             rated = index;
             $(input).val(index+1);
+                
         });
 
-        $(this).on('mouseleave', function(){
-            var i = 0;
-            for(i=0; i<=rated; i++) {
-                $(item[i]).removeClass('zmdi-star-outline');
-                $(item[i]).addClass('zmdi-star');
-            }
+        // $(this).on('mouseleave', function(){
+        //     console.log(5);
+        //     var i = 0;
+        //     for(i=0; i<=rated; i++) {
+        //         $(item[i]).removeClass('zmdi-star-outline');
+        //         $(item[i]).addClass('zmdi-star');
+        //         console.log(6);
+        //     }
 
-            for(var j=i; j<item.length; j++) {
-                $(item[j]).addClass('zmdi-star-outline');
-                $(item[j]).removeClass('zmdi-star');
-            }
-        });
+        //     for(var j=i; j<item.length; j++) {
+        //         console.log(7);
+        //         $(item[j]).addClass('zmdi-star-outline');
+        //         $(item[j]).removeClass('zmdi-star');
+        //     }
+        // });
+        console.log(8);
     });
     
     /*==================================================================
